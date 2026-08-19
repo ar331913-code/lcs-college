@@ -619,20 +619,18 @@ function SiteLayout() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location.pathname]);
 
-  // Check cloud sync on mount for instant live updates across the internet
+  // Check cloud sync on mount with cache-busting & instant reactive load
   useEffect(() => {
     const syncUrl = siteData.cloudSyncUrl || 'https://extendsclass.com/api/json-storage/bin/bddeefd';
-    fetch(syncUrl)
+    const noCacheUrl = `${syncUrl}?_t=${Date.now()}`;
+    
+    fetch(noCacheUrl, { cache: 'no-store' })
       .then((res) => res.json())
       .then((cloudData) => {
         if (cloudData && typeof cloudData === 'object' && Array.isArray(cloudData.courses)) {
-          const currentLocal = getStoredValue(SITE_DATA_KEY, defaultSiteData);
-          const localTime = currentLocal?.updatedAt || 0;
-          const cloudTime = cloudData?.updatedAt || 0;
-          if (cloudTime >= localTime) {
-            setSiteData((prev) => ({ ...prev, ...cloudData }));
-            safeSetStorage(SITE_DATA_KEY, cloudData);
-          }
+          console.log('Live cloud data loaded:', cloudData.updatedAt);
+          setSiteData((prev) => ({ ...prev, ...cloudData }));
+          safeSetStorage(SITE_DATA_KEY, cloudData);
         }
       })
       .catch((err) => console.log('Cloud sync check:', err));

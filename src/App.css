@@ -3204,3 +3204,40 @@ button.mobile-menu-toggle,
     font-size: 0.80rem !important;
   }
 }
+
+
+/* ========================================================
+   SYMMETRICAL CENTERING & ZERO-HORIZONTAL SHIFT ON MOBILE
+   ======================================================== */
+
+.site-shell {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 12px 14px 40px !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+}
+
+.topbar,
+.hero-section,
+.content-section,
+.split-section,
+.page-hero,
+.contact-layout,
+.page-content {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+@media (max-width: 960px) {
+  .site-shell {
+    padding: 10px 12px 36px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}

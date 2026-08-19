@@ -911,53 +911,56 @@ function HomePage({ siteData }) {
 
   return (
     <>
-      <section className="hero-section">
-        <div className="hero-copy">
+      <section className="hero-section hero-full-bleed">
+        {/* Full-width Background Image Layer covering whole hero on all devices */}
+        <div className="hero-backdrop-media">
+          <SafeImage 
+            src={siteData.heroImage} 
+            alt="Students learning together at LCS"
+            fallbackText="LCS Computer Training College"
+            className="hero-backdrop-img"
+          />
+          <div className="hero-gradient-overlay" />
+        </div>
+
+        {/* Hero Writings Overlaid Directly on Top of Image */}
+        <div className="hero-inner-content">
           <div className="hero-badge">
             <span className="pulse-dot"></span>
             <IconGraduationCap size={16} className="hero-badge-icon" />
             <span>{(siteData.heroBadgeText || 'Admissions Open for 2026/2027 • Regular & Weekend Sessions').replace(/^🎓\s*/, '')}</span>
           </div>
-          <p className="eyebrow">Accredited by Ghana Education Service</p>
-          <h1>LCS Computer Training College</h1>
-          <p className="lead">
+
+          <p className="eyebrow hero-eyebrow">Accredited by Ghana Education Service</p>
+          <h1 className="hero-main-title">LCS Computer Training College</h1>
+          <p className="lead hero-lead-text">
             Professional IT training with 95% practical focus. Master Information Technology, Cybersecurity,
             Programming, Database Management, Graphic Design, Hardware Engineering, Video Editing, 
             Microsoft Office, Website Development, and Advanced AI.
           </p>
 
-          <div className="button-row">
-            <NavLink to="/courses" className="btn btn-primary">
-              Explore programs
+          <div className="button-row hero-button-row">
+            <NavLink to="/courses" className="btn btn-primary btn-hero-primary btn-with-icon">
+              <span>Explore Programs</span>
+              <IconArrowRight size={16} />
             </NavLink>
-            <NavLink to="/contact" className="btn btn-secondary">
-              Apply online →
+            <NavLink to="/contact" className="btn btn-secondary btn-hero-secondary">
+              Apply Online →
             </NavLink>
           </div>
 
-          <div className="stats-grid">
+          <div className="stats-grid hero-stats-grid">
             {stats.map((stat) => (
-              <div key={stat.label} className="stat-card">
+              <div key={stat.label} className="stat-card hero-stat-card">
                 <strong>{stat.value}</strong>
                 <span>{stat.label}</span>
               </div>
             ))}
           </div>
-        </div>
 
-        <div className="hero-visual">
-          <div className="hero-image-wrap">
-            <SafeImage 
-              src={siteData.heroImage} 
-              alt="Students learning together at LCS"
-              fallbackText="LCS Computer Training College"
-            />
-          </div>
-
-          <div className="floating-badge">
-            <span>{siteData.promoTitle || '95% Practical'}</span>
-            <strong>Training</strong>
-            <p>{siteData.promoText || 'Flexible schedules with regular and weekend sessions.'}</p>
+          <div className="hero-bottom-promo-pill">
+            <span className="promo-tag">{siteData.promoTitle || '95% Practical'}</span>
+            <span>{siteData.promoText || 'Flexible schedules with regular and weekend sessions. Hostel facilities available.'}</span>
           </div>
         </div>
       </section>

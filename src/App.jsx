@@ -694,8 +694,25 @@ function SiteLayout() {
 
   // Maintain admin session while tab is open
 
-  const handleSaveSiteData = (nextData) => {
+  const handleSaveSiteData = async (nextData) => {
     setSiteData(nextData);
+    safeSetStorage(SITE_DATA_KEY, nextData);
+
+    // Save directly to disk (src/siteData.json) via built-in Vite server API
+    try {
+      const res = await fetch('/api/save-site-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(nextData),
+      });
+      if (res.ok) {
+        setStatus('Saved permanently to src/siteData.json on disk! Changes will never disappear.');
+        return;
+      }
+    } catch {
+      // In static production hosting, fallback to localStorage
+    }
+
     setStatus('Website data & images updated successfully.');
   };
 

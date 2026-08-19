@@ -570,6 +570,38 @@ function App() {
   );
 }
 
+
+// Universal Asset Path Resolver for GitHub Pages & Local Dev
+export const resolveAssetPath = (assetPath) => {
+  if (!assetPath) return '';
+  if (assetPath.startsWith('data:') || assetPath.startsWith('http:') || assetPath.startsWith('https:') || assetPath.startsWith('blob:')) {
+    return assetPath;
+  }
+  const clean = assetPath.replace(/^(\.\/|\/)/, '');
+  const base = import.meta.env.BASE_URL || '/';
+  const cleanBase = base.endsWith('/') ? base : `${base}/`;
+  return `${cleanBase}${clean}`;
+};
+
+// Resilient BrandLogo component that renders logo image or stylish LCS mark with zero layout shift
+function BrandLogo({ logoImage, logoText = 'LCS' }) {
+  const [imgFailed, setImgFailed] = useState(false);
+  const src = resolveAssetPath(logoImage);
+
+  if (src && !imgFailed) {
+    return (
+      <img
+        src={src}
+        alt="LCS Logo"
+        className="brand-logo-image"
+        onError={() => setImgFailed(true)}
+      />
+    );
+  }
+
+  return <span className="brand-mark">{logoText || 'LCS'}</span>;
+}
+
 function SiteLayout() {
   const [siteData, setSiteData] = useState(getMergedSiteData);
   const [visitorLogs, setVisitorLogs] = useState(() => getStoredValue(VISITOR_LOG_KEY, []));
@@ -754,11 +786,7 @@ function SiteLayout() {
     <div className="site-shell">
       <header className="topbar">
         <NavLink to="/" className="brand" onClick={() => setMobileMenuOpen(false)}>
-          {siteData.logoImage ? (
-            <img src={siteData.logoImage} alt="Logo" className="brand-logo-image" />
-          ) : (
-            <span className="brand-mark">{siteData.logo || 'LCS'}</span>
-          )}
+          <BrandLogo logoImage={siteData.logoImage} logoText={siteData.logo} />
           <div className="brand-text">
             <span className="brand-name">LCS COMPUTER TRAINING COLLEGE</span>
             <small>Learn. Build. Launch.</small>
@@ -807,13 +835,9 @@ function SiteLayout() {
       <div className={`mobile-nav-drawer ${mobileMenuOpen ? 'open' : ''}`}>
         <div className="mobile-drawer-header">
           <div className="brand">
-            {siteData.logoImage ? (
-              <img src={siteData.logoImage} alt="Logo" className="brand-logo-image" />
-            ) : (
-              <span className="brand-mark">{siteData.logo || 'LCS'}</span>
-            )}
-            <div>
-              <span className="brand-name">LCS Academy</span>
+            <BrandLogo logoImage={siteData.logoImage} logoText={siteData.logo} />
+            <div className="brand-text">
+              <span className="brand-name">LCS COMPUTER TRAINING COLLEGE</span>
               <small>Koforidua, Ghana</small>
             </div>
           </div>

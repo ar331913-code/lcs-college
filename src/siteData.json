@@ -1,0 +1,131 @@
+{
+  "logo": "LCS",
+  "logoImage": null,
+  "heroBadgeText": "Admissions Open for 2026/2027 • Regular & Weekend Sessions",
+  "heroImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
+  "communityImage": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80",
+  "aboutIntroImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80",
+  "aboutVideo": "https://www.youtube.com/watch?v=lQx5NQ3Wq8w",
+  "mapAddress": "Inside Happy Home Tiles Building, Near Metro Mass Transport, Koforidua, Ghana",
+  "mapEmbedUrl": "https://maps.google.com/maps?q=Metro%20Mass%20Transit%2C%20Koforidua%2C%20Ghana&t=&z=16&ie=UTF8&iwloc=&output=embed",
+  "mapDirectionsUrl": "https://www.google.com/maps/dir/?api=1&destination=Metro+Mass+Transit+Koforidua+Ghana",
+  "promoTitle": "95% Practical Training",
+  "promoText": "Flexible schedules with regular and weekend sessions. Hostel facilities available.",
+  "cloudSyncUrl": "",
+  "courses": [
+    {
+      "id": "it-fundamentals",
+      "title": "Information Technology",
+      "duration": "Flexible",
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+      "text": "95% practical training in IT fundamentals, computer architecture, enterprise systems, and networking solutions."
+    },
+    {
+      "id": "cybersecurity",
+      "title": "Cybersecurity",
+      "duration": "Flexible",
+      "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
+      "text": "Learn threat detection, system security, ethical hacking, network defense, and practical incident response."
+    },
+    {
+      "id": "programming",
+      "title": "Programming",
+      "duration": "Flexible",
+      "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+      "text": "95% hands-on coding with multiple languages (Python, JavaScript, Java, C++) and modern development frameworks."
+    },
+    {
+      "id": "database-management",
+      "title": "Database Management",
+      "duration": "Flexible",
+      "image": "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=1200&q=80",
+      "text": "Master relational and NoSQL database design, SQL querying, PostgreSQL/MySQL administration, and cloud storage."
+    },
+    {
+      "id": "graphic-design",
+      "title": "Graphic Design",
+      "duration": "Flexible",
+      "image": "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=80",
+      "text": "Professional design tools (Photoshop, Illustrator, Figma) and visual communication for branding and UI."
+    },
+    {
+      "id": "hardware-engineering",
+      "title": "Hardware Engineering",
+      "duration": "Flexible",
+      "image": "https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=1200&q=80",
+      "text": "Hands-on training in computer hardware assembly, motherboards, chip troubleshooting, diagnostics, and repairs."
+    },
+    {
+      "id": "video-editing",
+      "title": "Video Editing",
+      "duration": "Flexible",
+      "image": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80",
+      "text": "Professional video editing, motion graphics, audio mastering, and color grading using Premiere Pro & After Effects."
+    },
+    {
+      "id": "microsoft-office",
+      "title": "Microsoft Office",
+      "duration": "Flexible",
+      "image": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=80",
+      "text": "Master Advanced Excel, Word documentation, PowerPoint presentations, and Access databases for office productivity."
+    },
+    {
+      "id": "website-development",
+      "title": "Website Development",
+      "duration": "Flexible",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+      "text": "Full-stack web development with modern HTML/CSS, JavaScript, React, Node.js, and real live client deployments."
+    },
+    {
+      "id": "advanced-ai",
+      "title": "Advanced AI",
+      "duration": "Flexible",
+      "image": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80",
+      "text": "Artificial Intelligence, machine learning principles, neural networks, and building practical AI-powered workflows."
+    }
+  ],
+  "faculty": [
+    {
+      "id": "fac-1",
+      "name": "Engr. Daniel Okafor",
+      "role": "Chief Executive Officer",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+      "bio": "Leads the academy vision with a focus on innovation, digital skills, and future-ready learning."
+    },
+    {
+      "id": "fac-2",
+      "name": "Mrs. Grace Thompson",
+      "role": "Head of Training",
+      "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+      "bio": "Coordinates academic excellence, trainer quality, and practical learning outcomes for every cohort."
+    },
+    {
+      "id": "fac-3",
+      "name": "Mr. Peter Adeyemi",
+      "role": "Frontend Mentor",
+      "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+      "bio": "Mentors students in frontend design, JavaScript, and modern UI development best practices."
+    },
+    {
+      "id": "fac-4",
+      "name": "Mrs. Linda Mba",
+      "role": "Student Success Lead",
+      "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80",
+      "bio": "Guides learners through onboarding, support, and career development from enrollment to placement."
+    }
+  ],
+  "gallery": [
+    {
+      "title": "Modern Coding Lab",
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "title": "Hardware & Tech Studio",
+      "image": "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "title": "Mentor Collaboration",
+      "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+    }
+  ]
+}

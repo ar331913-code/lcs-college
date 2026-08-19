@@ -23,8 +23,13 @@ import {
   IconVideo,
   IconMonitor,
   IconLightbulb,
-  IconWhatsApp
+  IconWhatsApp,
+  IconMenu,
+  IconX,
+  IconGlobe,
+  IconCopy
 } from './components/Icons';
+import initialSiteData from './siteData.json';
 import { HashRouter, NavLink, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
@@ -53,140 +58,9 @@ const defaultAdmin = {
   password: 'admin123',
 };
 
-const defaultCourses = [
-  {
-    id: 'it-fundamentals',
-    title: 'Information Technology',
-    duration: 'Flexible',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
-    text: '95% practical training in IT fundamentals, computer architecture, enterprise systems, and networking solutions.',
-  },
-  {
-    id: 'cybersecurity',
-    title: 'Cybersecurity',
-    duration: 'Flexible',
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80',
-    text: 'Learn threat detection, system security, ethical hacking, network defense, and practical incident response.',
-  },
-  {
-    id: 'programming',
-    title: 'Programming',
-    duration: 'Flexible',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
-    text: '95% hands-on coding with multiple languages (Python, JavaScript, Java, C++) and modern development frameworks.',
-  },
-  {
-    id: 'database-management',
-    title: 'Database Management',
-    duration: 'Flexible',
-    image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=1200&q=80',
-    text: 'Master relational and NoSQL database design, SQL querying, PostgreSQL/MySQL administration, and cloud storage.',
-  },
-  {
-    id: 'graphic-design',
-    title: 'Graphic Design',
-    duration: 'Flexible',
-    image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=80',
-    text: 'Professional design tools (Photoshop, Illustrator, Figma) and visual communication for branding and UI.',
-  },
-  {
-    id: 'hardware-engineering',
-    title: 'Hardware Engineering',
-    duration: 'Flexible',
-    image: 'https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=1200&q=80',
-    text: 'Hands-on training in computer hardware assembly, motherboards, chip troubleshooting, diagnostics, and repairs.',
-  },
-  {
-    id: 'video-editing',
-    title: 'Video Editing',
-    duration: 'Flexible',
-    image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80',
-    text: 'Professional video editing, motion graphics, audio mastering, and color grading using Premiere Pro & After Effects.',
-  },
-  {
-    id: 'microsoft-office',
-    title: 'Microsoft Office',
-    duration: 'Flexible',
-    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=80',
-    text: 'Master Advanced Excel, Word documentation, PowerPoint presentations, and Access databases for office productivity.',
-  },
-  {
-    id: 'website-development',
-    title: 'Website Development',
-    duration: 'Flexible',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80',
-    text: 'Full-stack web development with modern HTML/CSS, JavaScript, React, Node.js, and real live client deployments.',
-  },
-  {
-    id: 'advanced-ai',
-    title: 'Advanced AI',
-    duration: 'Flexible',
-    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80',
-    text: 'Artificial Intelligence, machine learning principles, neural networks, and building practical AI-powered workflows.',
-  },
-];
-
-const defaultFaculty = [
-  {
-    id: 'fac-1',
-    name: 'Engr. Daniel Okafor',
-    role: 'Chief Executive Officer',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80',
-    bio: 'Leads the academy vision with a focus on innovation, digital skills, and future-ready learning.',
-  },
-  {
-    id: 'fac-2',
-    name: 'Mrs. Grace Thompson',
-    role: 'Head of Training',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
-    bio: 'Coordinates academic excellence, trainer quality, and practical learning outcomes for every cohort.',
-  },
-  {
-    id: 'fac-3',
-    name: 'Mr. Peter Adeyemi',
-    role: 'Frontend Mentor',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80',
-    bio: 'Mentors students in frontend design, JavaScript, and modern UI development best practices.',
-  },
-  {
-    id: 'fac-4',
-    name: 'Mrs. Linda Mba',
-    role: 'Student Success Lead',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80',
-    bio: 'Guides learners through onboarding, support, and career development from enrollment to placement.',
-  },
-];
-
-const defaultSiteData = {
-  logo: 'LCS',
-  logoImage: null,
-  heroBadgeText: 'Admissions Open for 2026/2027 • Regular & Weekend Sessions',
-  heroImage: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
-  communityImage: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80',
-  aboutIntroImage: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80',
-  aboutVideo: 'https://www.youtube.com/watch?v=lQx5NQ3Wq8w',
-  mapAddress: 'Inside Happy Home Tiles Building, Near Metro Mass Transport, Koforidua, Ghana',
-  mapEmbedUrl: 'https://maps.google.com/maps?q=Metro%20Mass%20Transit%2C%20Koforidua%2C%20Ghana&t=&z=16&ie=UTF8&iwloc=&output=embed',
-  mapDirectionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Metro+Mass+Transit+Koforidua+Ghana',
-  promoTitle: '95% Practical Training',
-  promoText: 'Flexible schedules with regular and weekend sessions. Hostel facilities available.',
-  courses: defaultCourses,
-  faculty: defaultFaculty,
-  gallery: [
-    {
-      title: 'Modern Coding Lab',
-      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
-    },
-    {
-      title: 'Hardware & Tech Studio',
-      image: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1200&q=80',
-    },
-    {
-      title: 'Mentor Collaboration',
-      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
-    },
-  ],
-};
+const defaultCourses = initialSiteData.courses;
+const defaultFaculty = initialSiteData.faculty;
+const defaultSiteData = initialSiteData;
 
 
 // Client-side image compressor: converts large (5MB-20MB) camera photos to lightweight (<100KB) WebP/JPEG
@@ -701,10 +575,31 @@ function SiteLayout() {
   const [visitorLogs, setVisitorLogs] = useState(() => getStoredValue(VISITOR_LOG_KEY, []));
   const [isAdmin, setIsAdmin] = useState(() => getStoredValue('lcs_admin_session', false));
   const [showAdminPortal, setShowAdminPortal] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
   const [status, setStatus] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
+
+  // Check cloud sync on mount if configured
+  useEffect(() => {
+    if (siteData.cloudSyncUrl) {
+      fetch(siteData.cloudSyncUrl)
+        .then((res) => res.json())
+        .then((cloudData) => {
+          if (cloudData && typeof cloudData === 'object') {
+            setSiteData((prev) => ({ ...prev, ...cloudData }));
+          }
+        })
+        .catch((err) => console.log('Cloud sync check:', err));
+    }
+  }, [siteData.cloudSyncUrl]);
 
   useEffect(() => {
     safeSetStorage(SITE_DATA_KEY, siteData);
@@ -818,19 +713,20 @@ function SiteLayout() {
   return (
     <div className="site-shell">
       <header className="topbar">
-        <NavLink to="/" className="brand">
+        <NavLink to="/" className="brand" onClick={() => setMobileMenuOpen(false)}>
           {siteData.logoImage ? (
             <img src={siteData.logoImage} alt="Logo" className="brand-logo-image" />
           ) : (
             <span className="brand-mark">{siteData.logo || 'LCS'}</span>
           )}
-          <div>
+          <div className="brand-text">
             <span className="brand-name">LCS COMPUTER TRAINING COLLEGE</span>
             <small>Learn. Build. Launch.</small>
           </div>
         </NavLink>
 
-        <nav className="main-nav" aria-label="Main navigation">
+        {/* Desktop Navigation */}
+        <nav className="main-nav desktop-only" aria-label="Main navigation">
           {navigation.map((item) => (
             <NavLink
               key={item.path}
@@ -843,14 +739,87 @@ function SiteLayout() {
         </nav>
 
         <div className="header-actions">
-          {allowAdminPanel && (
+          {isAdmin && (
             <button type="button" className="logout-btn" onClick={handleLogout}>
-              {isAdmin ? 'Logout' : 'Close Portal'}
+              Logout
             </button>
           )}
-          {!isAdmin && <NavLink to="/contact" className="btn btn-primary btn-small">Apply Now</NavLink>}
+          {!isAdmin && (
+            <NavLink to="/contact" className="btn btn-primary btn-small header-apply-btn">
+              Apply Now
+            </NavLink>
+          )}
+          
+          {/* Mobile Hamburger Toggle */}
+          <button
+            type="button"
+            className="mobile-menu-toggle"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {mobileMenuOpen ? <IconX size={26} /> : <IconMenu size={26} />}
+          </button>
         </div>
       </header>
+
+      {/* Mobile Drawer Menu */}
+      <div className={`mobile-backdrop ${mobileMenuOpen ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)} />
+      <div className={`mobile-nav-drawer ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-drawer-header">
+          <div className="brand">
+            {siteData.logoImage ? (
+              <img src={siteData.logoImage} alt="Logo" className="brand-logo-image" />
+            ) : (
+              <span className="brand-mark">{siteData.logo || 'LCS'}</span>
+            )}
+            <div>
+              <span className="brand-name">LCS Academy</span>
+              <small>Koforidua, Ghana</small>
+            </div>
+          </div>
+          <button
+            type="button"
+            className="mobile-close-btn"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <IconX size={24} />
+          </button>
+        </div>
+
+        <nav className="mobile-nav-links">
+          {navigation.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) => (isActive ? 'mobile-nav-link active' : 'mobile-nav-link')}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className="mobile-drawer-footer">
+          <NavLink
+            to="/contact"
+            className="btn btn-primary btn-full-width"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Apply for Admission
+          </NavLink>
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-secondary btn-full-width btn-with-icon"
+            style={{ marginTop: '10px' }}
+          >
+            <IconWhatsApp size={18} />
+            <span>Chat on WhatsApp</span>
+          </a>
+        </div>
+      </div>
 
       <main className="page-content">
         <Routes>
@@ -2283,7 +2252,59 @@ function AdminPanel({ siteData, visitorLogs, onSave, onResetDefaults, status, se
                   </div>
 
                   <div className="backup-card">
-                    <h4><IconDownload size={20} /> Export Website Backup</h4>
+                    
+            {/* Cloud Sync & Production Publishing */}
+            <div className="admin-media-card" style={{ marginTop: '24px' }}>
+              <div className="admin-card-head">
+                <span className="admin-badge"><IconGlobe size={14} /> Global Internet Publishing</span>
+                <h4>Publish Changes to All Visitors Across the Internet</h4>
+                <p>
+                  Because static websites run in visitors' browsers, you have two simple ways to push your admin changes to every phone and PC:
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '16px' }}>
+                <div style={{ background: 'rgba(125,29,50,0.05)', padding: '16px', borderRadius: '14px', border: '1px solid rgba(125,29,50,0.12)' }}>
+                  <strong style={{ display: 'block', marginBottom: '6px', color: '#7d1d32' }}>Method 1: Download & Replace siteData.json (Instant Permanent Update)</strong>
+                  <p style={{ margin: '0 0 12px', fontSize: '0.88rem', color: '#442b32' }}>
+                    Click below to download the updated configuration. Replace <code>src/siteData.json</code> in your project and run <code>npm run deploy</code>:
+                  </p>
+                  <button
+                    type="button"
+                    className="btn btn-primary btn-small btn-with-icon"
+                    onClick={() => {
+                      const jsonStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(siteData, null, 2));
+                      const downloadAnchor = document.createElement('a');
+                      downloadAnchor.setAttribute('href', jsonStr);
+                      downloadAnchor.setAttribute('download', 'siteData.json');
+                      document.body.appendChild(downloadAnchor);
+                      downloadAnchor.click();
+                      downloadAnchor.remove();
+                      setStatus('siteData.json downloaded! Put it in src/ folder and deploy.');
+                    }}
+                  >
+                    <IconDownload size={16} />
+                    <span>Download Production siteData.json</span>
+                  </button>
+                </div>
+
+                <div style={{ background: 'rgba(255,255,255,0.9)', padding: '16px', borderRadius: '14px', border: '1px solid rgba(125,29,50,0.15)' }}>
+                  <strong style={{ display: 'block', marginBottom: '6px', color: '#2a171d' }}>Method 2: Live Cloud Sync API (Optional)</strong>
+                  <p style={{ margin: '0 0 10px', fontSize: '0.88rem', color: '#553e44' }}>
+                    Connect a free JSON endpoint (e.g. npoint.io or Firebase REST) to automatically sync changes live to all visitors without redeploying:
+                  </p>
+                  <input
+                    type="text"
+                    value={brandingForm.cloudSyncUrl || ''}
+                    onChange={(e) => setBrandingForm({ ...brandingForm, cloudSyncUrl: e.target.value })}
+                    placeholder="https://api.npoint.io/your-bin-id"
+                    style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid #ccc', fontSize: '0.9rem', marginBottom: '10px' }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <h4><IconDownload size={20} /> Export Website Backup</h4>
                     <p>Download a JSON copy of all current courses, images, and content settings to your computer.</p>
                     <button
                       type="button"

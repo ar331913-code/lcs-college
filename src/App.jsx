@@ -1595,17 +1595,52 @@ function AdminPanel({ siteData, visitorLogs, onSave, onResetDefaults, status, se
     setGalleryItems(siteData.gallery || defaultSiteData.gallery);
   }, [siteData]);
 
-  // Handle local image file upload with automatic compression (<100KB)
-  const handleLocalImageUpload = async (file, onDone, maxWidth = 1200, maxHeight = 1200) => {
+  // Direct Image Cloud Uploader
+  const uploadImageToCloud = async (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await fetch('https://tmpfiles.org/api/v1/upload', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`Upload failed with status ${response.status}`);
+    }
+
+    const result = await response.json();
+    if (result && result.status === 'success' && result.data && result.data.url) {
+      return result.data.url.replace('tmpfiles.org/', 'tmpfiles.org/dl/');
+    }
+    throw new Error('Invalid response from cloud image server');
+  };
+
+  // Handle local image file upload with automatic cloud hosting and compression fallback
+  const handleLocalImageUpload = async (file, onDone, maxWidth = 800, maxHeight = 600) => {
     if (!file) return;
     try {
-      setStatus('Optimizing and uploading image...');
+      setStatus('Uploading photo to Cloud CDN...');
+      
+      // 1. Attempt direct cloud image hosting
+      try {
+        const cdnUrl = await uploadImageToCloud(file);
+        if (cdnUrl) {
+          onDone(cdnUrl);
+          setStatus('Photo uploaded to Cloud CDN successfully! Click "Save All Changes Live" to apply.');
+          return;
+        }
+      } catch (cdnErr) {
+        console.warn('CDN upload fallback to local compression:', cdnErr);
+      }
+
+      // 2. Fallback to ultra-compact local compression
       const compressedDataUrl = await compressImageFile(file, maxWidth, maxHeight);
       onDone(compressedDataUrl);
-      setStatus('Image uploaded and optimized successfully! Click "Save" to apply.');
+      setStatus('Photo optimized! Click "Save All Changes Live" to apply.');
     } catch (err) {
-      console.error('Image compression error:', err);
-      setStatus('Image upload failed. Please try another image or check file format.');
+      console.error('Image upload error:', err);
+      setStatus('Image upload failed. Please check image format or try again.');
     }
   };
 

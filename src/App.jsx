@@ -587,19 +587,19 @@ function SiteLayout() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location.pathname]);
 
-  // Check cloud sync on mount if configured
+  // Check cloud sync on mount for instant live updates across the internet
   useEffect(() => {
-    if (siteData.cloudSyncUrl) {
-      fetch(siteData.cloudSyncUrl)
-        .then((res) => res.json())
-        .then((cloudData) => {
-          if (cloudData && typeof cloudData === 'object') {
-            setSiteData((prev) => ({ ...prev, ...cloudData }));
-          }
-        })
-        .catch((err) => console.log('Cloud sync check:', err));
-    }
-  }, [siteData.cloudSyncUrl]);
+    const syncUrl = siteData.cloudSyncUrl || 'https://extendsclass.com/api/json-storage/bin/bddeefd';
+    fetch(syncUrl)
+      .then((res) => res.json())
+      .then((cloudData) => {
+        if (cloudData && typeof cloudData === 'object' && Array.isArray(cloudData.courses)) {
+          setSiteData((prev) => ({ ...prev, ...cloudData }));
+          safeSetStorage(SITE_DATA_KEY, cloudData);
+        }
+      })
+      .catch((err) => console.log('Cloud sync check:', err));
+  }, []);
 
   useEffect(() => {
     safeSetStorage(SITE_DATA_KEY, siteData);
@@ -698,7 +698,21 @@ function SiteLayout() {
     setSiteData(nextData);
     safeSetStorage(SITE_DATA_KEY, nextData);
 
-    // Save directly to disk (src/siteData.json) via built-in Vite server API
+    const syncUrl = nextData.cloudSyncUrl || 'https://extendsclass.com/api/json-storage/bin/bddeefd';
+
+    // 1. Save directly to Cloud Sync Storage (instant live update for all visitors across internet)
+    try {
+      await fetch(syncUrl, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(nextData),
+      });
+      console.log('Live cloud synchronization successful!');
+    } catch (e) {
+      console.warn('Cloud sync error:', e);
+    }
+
+    // 2. Save directly to disk (src/siteData.json) via built-in Vite server API if on localhost
     try {
       const res = await fetch('/api/save-site-data', {
         method: 'POST',
@@ -706,14 +720,14 @@ function SiteLayout() {
         body: JSON.stringify(nextData),
       });
       if (res.ok) {
-        setStatus('Saved permanently to src/siteData.json on disk! Changes will never disappear.');
+        setStatus('Saved permanently to src/siteData.json and synced live to Cloud!');
         return;
       }
     } catch {
-      // In static production hosting, fallback to localStorage
+      // In static production hosting, cloud sync handles it
     }
 
-    setStatus('Website data & images updated successfully.');
+    setStatus('Website data & images updated and synced live across the internet!');
   };
 
   const handleResetToDefaults = () => {

@@ -805,16 +805,27 @@ function SiteLayout() {
         </div>
 
         <nav className="mobile-nav-links">
-          {navigation.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) => (isActive ? 'mobile-nav-link active' : 'mobile-nav-link')}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {item.label}
-            </NavLink>
-          ))}
+          {navigation.map((item) => {
+            let IconComponent = IconBookOpen;
+            if (item.path === '/') IconComponent = IconGraduationCap;
+            if (item.path === '/about') IconComponent = IconUsers;
+            if (item.path === '/courses') IconComponent = IconBookOpen;
+            if (item.path === '/requirements') IconComponent = IconCheckCircle;
+            if (item.path === '/contact') IconComponent = IconPhone;
+
+            return (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) => (isActive ? 'mobile-nav-link active' : 'mobile-nav-link')}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="mobile-nav-icon"><IconComponent size={20} /></span>
+                <span className="mobile-nav-text">{item.label}</span>
+                <span className="mobile-nav-arrow"><IconArrowRight size={15} /></span>
+              </NavLink>
+            );
+          })}
         </nav>
 
         <div className="mobile-drawer-footer">

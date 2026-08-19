@@ -2791,3 +2791,100 @@ textarea {
     margin-top: 18px;
   }
 }
+
+
+/* ========================================================
+   MOBILE TOPBAR LOCK (HAMBURGER ALWAYS FAR RIGHT ON SAME LINE)
+   ======================================================== */
+
+.topbar {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+  gap: 12px !important;
+}
+
+.brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+  overflow: hidden !important;
+}
+
+.brand-text {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.header-actions {
+  display: flex !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+  margin-left: auto !important;
+}
+
+@media (max-width: 960px) {
+  .site-shell {
+    padding: 8px 10px 36px !important;
+  }
+
+  .topbar {
+    padding: 10px 14px !important;
+    min-height: 60px !important;
+    margin-bottom: 16px !important;
+    border-radius: 18px !important;
+  }
+
+  .brand-logo-image {
+    max-width: 42px !important;
+    max-height: 42px !important;
+  }
+
+  .brand-mark {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 0.82rem !important;
+    border-radius: 10px !important;
+  }
+
+  .brand-name {
+    font-size: 0.88rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    line-height: 1.2 !important;
+  }
+
+  .brand small {
+    font-size: 0.72rem !important;
+    white-space: nowrap !important;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 42px !important;
+    height: 42px !important;
+    padding: 0 !important;
+    border-radius: 12px !important;
+    background: rgba(125, 29, 50, 0.08) !important;
+    border: 1px solid rgba(125, 29, 50, 0.15) !important;
+    color: #7d1d32 !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand small {
+    display: none !important;
+  }
+
+  .brand-name {
+    font-size: 0.84rem !important;
+  }
+}

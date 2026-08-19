@@ -1824,7 +1824,7 @@ function AdminPanel({ siteData, visitorLogs, onSave, onResetDefaults, status, se
                     <div className="admin-media-fields">
                       <label><strong>Homepage Hero Image</strong></label>
                       <input
-                        type="url"
+                        type="text"
                         value={mediaForm.heroImage}
                         onChange={(e) => setMediaForm({ ...mediaForm, heroImage: e.target.value })}
                         placeholder="Paste image URL..."
@@ -1848,7 +1848,7 @@ function AdminPanel({ siteData, visitorLogs, onSave, onResetDefaults, status, se
                     <div className="admin-media-fields">
                       <label><strong>Homepage Community Banner</strong></label>
                       <input
-                        type="url"
+                        type="text"
                         value={mediaForm.communityImage}
                         onChange={(e) => setMediaForm({ ...mediaForm, communityImage: e.target.value })}
                         placeholder="Paste image URL..."
@@ -1872,7 +1872,7 @@ function AdminPanel({ siteData, visitorLogs, onSave, onResetDefaults, status, se
                     <div className="admin-media-fields">
                       <label><strong>About Page Main Image</strong></label>
                       <input
-                        type="url"
+                        type="text"
                         value={mediaForm.aboutIntroImage}
                         onChange={(e) => setMediaForm({ ...mediaForm, aboutIntroImage: e.target.value })}
                         placeholder="Paste image URL..."
@@ -1900,7 +1900,7 @@ function AdminPanel({ siteData, visitorLogs, onSave, onResetDefaults, status, se
                     <div className="admin-media-fields">
                       <label><strong>Header & Footer Logo Image (Optional)</strong></label>
                       <input
-                        type="url"
+                        type="text"
                         value={mediaForm.logoImage || ''}
                         onChange={(e) => setMediaForm({ ...mediaForm, logoImage: e.target.value })}
                         placeholder="Logo image URL (leave blank for text badge)"
@@ -2017,7 +2017,7 @@ function AdminPanel({ siteData, visitorLogs, onSave, onResetDefaults, status, se
                         <label>
                           Course Image (URL or Upload)
                           <input
-                            type="url"
+                            type="text"
                             value={course.image}
                             onChange={(e) => handleCourseFieldChange(index, 'image', e.target.value)}
                             placeholder="Image URL"
@@ -2112,7 +2112,7 @@ function AdminPanel({ siteData, visitorLogs, onSave, onResetDefaults, status, se
                         <label>
                           Photo (URL or Upload)
                           <input
-                            type="url"
+                            type="text"
                             value={person.image}
                             onChange={(e) => handleFacultyFieldChange(index, 'image', e.target.value)}
                             placeholder="Image URL"

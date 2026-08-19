@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.resolve(rootDir, 'dist');
-const repoUrl = 'https://github.com/ar331913-code/lcs-school-website.git';
+const repoUrl = 'https://github.com/ar331913-code/lcs-college.git';
 
 console.log('=== Starting Fresh Clean Deployment to GitHub Pages ===');
 
@@ -39,7 +39,7 @@ try {
 
   console.log('\n=============================================');
   console.log('🎉 DEPLOYMENT COMPLETE!');
-  console.log('Live site URL: https://ar331913-code.github.io/lcs-school-website/');
+  console.log('Live site URL: https://ar331913-code.github.io/lcs-college/');
   console.log('=============================================');
 } catch (err) {
   console.error('Deployment error:', err);

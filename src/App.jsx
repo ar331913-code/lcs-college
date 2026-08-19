@@ -1619,12 +1619,15 @@ function AdminPanel({ siteData, visitorLogs, onSave, onResetDefaults, status, se
     );
   };
 
-  const handleAddGalleryItem = () => {
+  const handleAddGalleryItem = (type = 'image') => {
     setGalleryItems((prev) => [
       ...prev,
       {
-        title: `Campus Activity ${prev.length + 1}`,
-        image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
+        type,
+        title: type === 'video' ? `Campus Video ${prev.length + 1}` : `Campus Photo ${prev.length + 1}`,
+        image: type === 'video' 
+          ? 'https://www.youtube.com/watch?v=lQx5NQ3Wq8w'
+          : 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
       },
     ]);
   };
@@ -2067,72 +2070,124 @@ function AdminPanel({ siteData, visitorLogs, onSave, onResetDefaults, status, se
               </form>
             )}
 
-            {/* TAB 4: CAMPUS GALLERY */}
+            {/* TAB 4: CAMPUS MEDIA GALLERY (PHOTOS & VIDEOS) */}
             {activeTab === 'gallery' && (
               <form className="admin-form" onSubmit={handleSaveGallery}>
                 <div className="admin-tab-header">
                   <div className="tab-title-row">
                     <div>
-                      <h3>Campus Life Gallery</h3>
-                      <p>Showcase campus facilities, students working in computer labs, and events.</p>
+                      <h3>Campus Media Gallery (Photos & Videos)</h3>
+                      <p>Showcase both campus photos and video tours. Upload files or paste YouTube / Vimeo links.</p>
                     </div>
-                    <button type="button" className="btn btn-secondary btn-small" onClick={handleAddGalleryItem}>
-                      <IconPlus size={15} /> <span>Add Gallery Photo</span>
-                    </button>
+                    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                      <button type="button" className="btn btn-secondary btn-small" onClick={() => handleAddGalleryItem('image')}>
+                        <IconPlus size={15} /> <span>+ Add Photo</span>
+                      </button>
+                      <button type="button" className="btn btn-secondary btn-small" onClick={() => handleAddGalleryItem('video')}>
+                        <IconVideo size={15} /> <span>+ Add Video</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
 
                 <div className="admin-items-list">
-                  {galleryItems.map((item, index) => (
-                    <div key={index} className="admin-item-card">
-                      <div className="item-card-preview">
-                        <SafeImage src={item.image} alt={item.title} />
-                      </div>
-                      <div className="item-card-details">
-                        <label>
-                          Photo Caption / Title
-                          <input
-                            type="text"
-                            value={item.title}
-                            onChange={(e) => handleGalleryChange(index, 'title', e.target.value)}
-                            placeholder="e.g. Students in AI Lab"
-                          />
-                        </label>
-                        <label>
-                          Photo (URL or Upload)
-                          <input
-                            type="url"
-                            value={item.image}
-                            onChange={(e) => handleGalleryChange(index, 'image', e.target.value)}
-                            placeholder="Image URL"
-                          />
-                        </label>
-                        <div className="admin-file-upload-row">
-                          <small>Upload photo from computer:</small>
-                          <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => handleLocalImageUpload(e.target.files?.[0], (url) => handleGalleryChange(index, 'image', url))}
-                          />
-                        </div>
+                  {galleryItems.map((item, index) => {
+                    const isItemVideo = item.type === 'video' || 
+                      (item.image && (item.image.includes('youtube') || item.image.includes('youtu.be') || item.image.includes('vimeo') || item.image.includes('.mp4') || item.image.startsWith('data:video')));
 
-                        <div className="item-card-footer">
-                          <button
-                            type="button"
-                            className="btn-danger-text"
-                            onClick={() => handleRemoveGalleryItem(index)}
-                          >
-                            <IconTrash size={14} /> <span>Delete Photo</span>
-                          </button>
+                    return (
+                      <div key={index} className="admin-item-card">
+                        <div className="item-card-preview">
+                          {isItemVideo ? (
+                            <SafeVideoPlayer videoSource={item.image} title={item.title} />
+                          ) : (
+                            <SafeImage src={item.image} alt={item.title} />
+                          )}
+                        </div>
+                        <div className="item-card-details">
+                          <div className="input-row">
+                            <label>
+                              Media Type
+                              <select
+                                value={item.type || (isItemVideo ? 'video' : 'image')}
+                                onChange={(e) => handleGalleryChange(index, 'type', e.target.value)}
+                                style={{ padding: '10px', borderRadius: '10px', border: '1px solid #ccc', fontWeight: '600' }}
+                              >
+                                <option value="image">📷 Photo</option>
+                                <option value="video">🎬 Video</option>
+                              </select>
+                            </label>
+                            <label>
+                              Caption / Title
+                              <input
+                                type="text"
+                                value={item.title}
+                                onChange={(e) => handleGalleryChange(index, 'title', e.target.value)}
+                                placeholder={item.type === 'video' ? "e.g. Campus Tour Video" : "e.g. AI Lab Coding Session"}
+                                required
+                              />
+                            </label>
+                          </div>
+
+                          <label>
+                            {item.type === 'video' ? 'Video Link (YouTube, Vimeo, or MP4 URL)' : 'Photo URL'}
+                            <input
+                              type="text"
+                              value={item.image}
+                              onChange={(e) => handleGalleryChange(index, 'image', e.target.value)}
+                              placeholder={item.type === 'video' ? "https://www.youtube.com/watch?v=..." : "https://images.unsplash.com/..."}
+                            />
+                          </label>
+
+                          <div className="admin-file-upload-row">
+                            <small>
+                              {item.type === 'video' 
+                                ? '📁 Or upload a video file (MP4, WebM, MOV):' 
+                                : '📁 Or upload a photo from your computer:'}
+                            </small>
+                            <input
+                              type="file"
+                              accept={item.type === 'video' ? "video/mp4,video/webm,video/quicktime" : "image/*"}
+                              onChange={async (e) => {
+                                const file = e.target.files?.[0];
+                                if (!file) return;
+                                if (item.type === 'video') {
+                                  try {
+                                    setStatus('Reading video file...');
+                                    const dataUrl = await readFileAsDataUrl(file);
+                                    handleGalleryChange(index, 'image', dataUrl);
+                                    setStatus('Video attached! Click Save to apply.');
+                                  } catch {
+                                    setStatus('Failed to read video file.');
+                                  }
+                                } else {
+                                  handleLocalImageUpload(file, (url) => handleGalleryChange(index, 'image', url));
+                                }
+                              }}
+                            />
+                          </div>
+
+                          <div className="item-card-footer">
+                            <span className="course-index-tag" style={{ background: item.type === 'video' ? 'rgba(125,29,50,0.15)' : 'rgba(0,0,0,0.06)' }}>
+                              {item.type === 'video' ? '🎬 Video Item' : '📷 Photo Item'}
+                            </span>
+                            <button
+                              type="button"
+                              className="btn-danger-text"
+                              onClick={() => handleRemoveGalleryItem(index)}
+                            >
+                              <IconTrash size={14} /> <span>Delete Media</span>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 <div className="admin-submit-bar">
                   <button type="submit" className="btn btn-primary">
-                    <IconSave size={16} /> <span>Save Gallery Photos</span>
+                    <IconSave size={16} /> <span>Save Media Gallery (Photos & Videos)</span>
                   </button>
                 </div>
               </form>

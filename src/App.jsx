@@ -594,8 +594,13 @@ function SiteLayout() {
       .then((res) => res.json())
       .then((cloudData) => {
         if (cloudData && typeof cloudData === 'object' && Array.isArray(cloudData.courses)) {
-          setSiteData((prev) => ({ ...prev, ...cloudData }));
-          safeSetStorage(SITE_DATA_KEY, cloudData);
+          const currentLocal = getStoredValue(SITE_DATA_KEY, defaultSiteData);
+          const localTime = currentLocal?.updatedAt || 0;
+          const cloudTime = cloudData?.updatedAt || 0;
+          if (cloudTime >= localTime) {
+            setSiteData((prev) => ({ ...prev, ...cloudData }));
+            safeSetStorage(SITE_DATA_KEY, cloudData);
+          }
         }
       })
       .catch((err) => console.log('Cloud sync check:', err));
@@ -695,17 +700,21 @@ function SiteLayout() {
   // Maintain admin session while tab is open
 
   const handleSaveSiteData = async (nextData) => {
-    setSiteData(nextData);
-    safeSetStorage(SITE_DATA_KEY, nextData);
+    const dataWithTimestamp = {
+      ...nextData,
+      updatedAt: Date.now(),
+    };
+    setSiteData(dataWithTimestamp);
+    safeSetStorage(SITE_DATA_KEY, dataWithTimestamp);
 
-    const syncUrl = nextData.cloudSyncUrl || 'https://extendsclass.com/api/json-storage/bin/bddeefd';
+    const syncUrl = dataWithTimestamp.cloudSyncUrl || 'https://extendsclass.com/api/json-storage/bin/bddeefd';
 
     // 1. Save directly to Cloud Sync Storage (instant live update for all visitors across internet)
     try {
       await fetch(syncUrl, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(nextData),
+        body: JSON.stringify(dataWithTimestamp),
       });
       console.log('Live cloud synchronization successful!');
     } catch (e) {
@@ -717,7 +726,7 @@ function SiteLayout() {
       const res = await fetch('/api/save-site-data', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(nextData),
+        body: JSON.stringify(dataWithTimestamp),
       });
       if (res.ok) {
         setStatus('Saved permanently to src/siteData.json and synced live to Cloud!');
@@ -1704,6 +1713,18 @@ function AdminPanel({ siteData, visitorLogs, onSave, onResetDefaults, status, se
     });
   };
 
+  const handleSaveAll = () => {
+    const cleaned = galleryItems.filter((g) => g.image || g.title);
+    onSave({
+      ...siteData,
+      ...brandingForm,
+      ...mediaForm,
+      courses: coursesList,
+      faculty: facultyList,
+      gallery: cleaned.length ? cleaned : defaultSiteData.gallery,
+    });
+  };
+
   return (
     <section className="content-section admin-wrapper">
       <div className="admin-card admin-panel">
@@ -1714,6 +1735,15 @@ function AdminPanel({ siteData, visitorLogs, onSave, onResetDefaults, status, se
                 <p className="eyebrow">Protected area</p>
                 <h2>Admin Control Center</h2>
               </div>
+              <button
+                type="button"
+                onClick={handleSaveAll}
+                className="btn btn-primary btn-with-icon"
+                style={{ background: '#25D366', color: '#fff', padding: '10px 16px', borderRadius: '12px', marginTop: '12px', width: '100%', justifyContent: 'center' }}
+              >
+                <IconSave size={18} />
+                <span>Save All Changes Live</span>
+              </button>
             </div>
 
             <div className="admin-tabs" aria-label="Admin dashboard sections">

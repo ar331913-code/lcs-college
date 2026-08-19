@@ -855,7 +855,7 @@ function SiteLayout() {
           <Route path="/about" element={<AboutPage siteData={siteData} />} />
           <Route path="/courses" element={<CoursesPage courses={siteData.courses || defaultCourses} />} />
           <Route path="/requirements" element={<RequirementsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/contact" element={<ContactPage siteData={siteData} />} />
           <Route
             path="/admin"
             element={
@@ -1269,7 +1269,7 @@ function RequirementsPage() {
   );
 }
 
-function ContactPage() {
+function ContactPage({ siteData }) {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -1278,104 +1278,138 @@ function ContactPage() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitMode, setSubmitMode] = useState('');
+
+  const academyPhone = siteData?.phone || '024 207 0679 / 0549 480 902';
+  const academyEmail = siteData?.email || 'admissions@lcsitacademy.com';
+  const academyAddress = siteData?.address || 'Inside Happy Home Tiles Building, Near Metro Mass Transport, Koforidua, Ghana';
+  const contactWhatsApp = siteData?.whatsappLink || 'https://wa.me/233242070679?text=Hello%20LCS%20College%2C%20I%20want%20to%20apply%20for%20admission';
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((previous) => ({ ...previous, [name]: value }));
   };
 
-  const handleContactSubmit = (event) => {
-    event.preventDefault();
-
-    if (!formData.email || !formData.fullName || !formData.message) {
-      alert('Please fill in Name, Email, and Message fields.');
+  const handleWhatsAppDirect = (e) => {
+    e.preventDefault();
+    if (!formData.fullName && !formData.phone && !formData.message) {
+      window.open(contactWhatsApp, '_blank');
       return;
     }
-
-    // Send email via mailto
-    const mailtoLink = `mailto:admissions@lcsitacademy.com?subject=Course Inquiry from ${encodeURIComponent(formData.fullName)}&body=${encodeURIComponent(
-      `Name: ${formData.fullName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCourse: ${formData.course}\n\nMessage:\n${formData.message}`
-    )}`;
-    window.location.href = mailtoLink;
-
-    // Send WhatsApp message
-    const whatsappText = encodeURIComponent(
-      `Hello LCS IT Academy,\n\nName: ${formData.fullName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCourse of Interest: ${formData.course}\n\nMessage: ${formData.message}`
+    const text = encodeURIComponent(
+      `🎓 *LCS College Admission Inquiry*\n\n👤 *Name:* ${formData.fullName || 'Prospective Student'}\n📞 *Phone:* ${formData.phone || 'N/A'}\n📧 *Email:* ${formData.email || 'N/A'}\n📚 *Course:* ${formData.course || 'General IT Inquiries'}\n\n💬 *Message:*\n${formData.message || 'I would like to get more information about admissions, courses, and schedules.'}`
     );
-    setTimeout(() => {
-      window.open(`https://wa.me/233242070679?text=${whatsappText}`, '_blank');
-    }, 500);
-
+    window.open(`https://wa.me/233242070679?text=${text}`, '_blank');
     setSubmitted(true);
-    setFormData({ fullName: '', email: '', phone: '', course: '', message: '' });
+    setSubmitMode('whatsapp');
+  };
 
-    setTimeout(() => setSubmitted(false), 3000);
+  const handleEmailDirect = (e) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Course Application: ${formData.course || 'IT Training'} - ${formData.fullName || 'Student'}`);
+    const body = encodeURIComponent(
+      `Hello LCS College Admissions Team,\n\nName: ${formData.fullName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCourse of Interest: ${formData.course}\n\nMessage / Questions:\n${formData.message}\n\nThank you.`
+    );
+    window.location.href = `mailto:${academyEmail}?subject=${subject}&body=${body}`;
+    setSubmitted(true);
+    setSubmitMode('email');
   };
 
   return (
     <>
       <section className="page-hero">
         <div>
-          <p className="eyebrow">Contact us</p>
+          <p className="eyebrow">Contact & Admissions</p>
           <h1>Speak with our admissions team & start your IT journey.</h1>
         </div>
       </section>
 
       <section className="contact-layout content-section">
         <div className="contact-card">
-          <h3>Send us an inquiry</h3>
+          <h3>Send Us an Application / Inquiry</h3>
+          <p style={{ color: '#664c53', marginBottom: '18px', fontSize: '0.94rem' }}>
+            Fill out this quick form to connect directly with our admissions office via <strong>WhatsApp</strong> or <strong>Email</strong>.
+          </p>
+
           {submitted && (
-            <p className="form-success">
-              <IconCheckCircle size={18} /> Your message has been prepared for email and WhatsApp!
-            </p>
+            <div className="form-success-box" style={{ background: 'rgba(37, 211, 102, 0.1)', border: '1px solid rgba(37, 211, 102, 0.3)', padding: '16px', borderRadius: '14px', marginBottom: '18px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <IconCheckCircle size={22} style={{ color: '#128c7e', flexShrink: 0 }} />
+              <div>
+                <strong style={{ color: '#075e54', display: 'block' }}>Inquiry Prepared Successfully!</strong>
+                <span style={{ fontSize: '0.88rem', color: '#2a171d' }}>
+                  {submitMode === 'whatsapp' ? 'Opening WhatsApp with your formatted application details...' : 'Opening your email app to send message...'}
+                </span>
+              </div>
+            </div>
           )}
-          <form className="contact-form" onSubmit={handleContactSubmit}>
+
+          <form className="contact-form">
             <div className="input-row">
               <input
                 type="text"
                 name="fullName"
-                placeholder="Full name"
+                placeholder="Your Full Name"
                 value={formData.fullName}
                 onChange={handleInputChange}
                 required
               />
               <input
-                type="email"
-                name="email"
-                placeholder="Email address"
-                value={formData.email}
+                type="tel"
+                name="phone"
+                placeholder="Phone Number (e.g. 024 207 0679)"
+                value={formData.phone}
                 onChange={handleInputChange}
                 required
               />
             </div>
             <div className="input-row">
               <input
-                type="tel"
-                name="phone"
-                placeholder="Phone number (e.g. 024 207 0679)"
-                value={formData.phone}
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                value={formData.email}
                 onChange={handleInputChange}
               />
               <input
                 type="text"
                 name="course"
-                placeholder="Course of interest"
+                placeholder="Course of Interest (e.g. Cybersecurity, Graphic Design)"
                 value={formData.course}
                 onChange={handleInputChange}
               />
             </div>
             <textarea
-              rows="5"
+              rows="4"
               name="message"
-              placeholder="Your inquiry or questions about courses, schedules, or hostel facilities..."
+              placeholder="Your questions about admissions, fees, hostel accommodation, or class schedules..."
               value={formData.message}
               onChange={handleInputChange}
-              required
             />
-            <button type="submit" className="btn btn-primary">
-              Send inquiry
-            </button>
-            <small>This will connect you directly with our admissions office via email & WhatsApp.</small>
+
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '12px' }}>
+              <button
+                type="button"
+                onClick={handleWhatsAppDirect}
+                className="btn btn-primary btn-with-icon"
+                style={{ background: '#25D366', color: '#ffffff', flex: '1', minWidth: '180px', justifyContent: 'center' }}
+              >
+                <IconWhatsApp size={20} />
+                <span>Send via WhatsApp</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleEmailDirect}
+                className="btn btn-secondary btn-with-icon"
+                style={{ flex: '1', minWidth: '160px', justifyContent: 'center' }}
+              >
+                <IconMail size={18} />
+                <span>Send via Email</span>
+              </button>
+            </div>
+            <small style={{ display: 'block', marginTop: '10px', color: '#7a5a63' }}>
+              Instant response guaranteed during official working hours (Mon - Sat).
+            </small>
           </form>
         </div>
 
@@ -1385,22 +1419,24 @@ function ContactPage() {
             <div className="contact-info-row">
               <IconMapPin size={20} className="contact-info-icon" />
               <div>
-                <strong>Location</strong>
-                <p>Koforidua, Inside Happy Home Tiles Building<br />Near Metro Mass Transport, Ghana</p>
+                <strong>Campus Location</strong>
+                <p>{academyAddress}</p>
               </div>
             </div>
             <div className="contact-info-row">
               <IconPhone size={20} className="contact-info-icon" />
               <div>
-                <strong>Phone Lines</strong>
-                <p><a href="tel:0242070679">024 207 0679</a> / <a href="tel:0549480902">0549 480 902</a></p>
+                <strong>Admissions Phone Lines</strong>
+                <p>
+                  <a href="tel:0242070679">024 207 0679</a> / <a href="tel:0549480902">0549 480 902</a>
+                </p>
               </div>
             </div>
             <div className="contact-info-row">
               <IconMail size={20} className="contact-info-icon" />
               <div>
-                <strong>Email Address</strong>
-                <p><a href="mailto:admissions@lcsitacademy.com">admissions@lcsitacademy.com</a></p>
+                <strong>Official Email</strong>
+                <p><a href={`mailto:${academyEmail}`}>{academyEmail}</a></p>
               </div>
             </div>
             <div className="contact-info-row">
@@ -1411,9 +1447,15 @@ function ContactPage() {
               </div>
             </div>
           </div>
-          <a className="btn btn-primary whatsapp-button btn-with-icon" href={whatsappLink} target="_blank" rel="noreferrer">
+          <a
+            className="btn btn-primary whatsapp-button btn-with-icon"
+            href={contactWhatsApp}
+            target="_blank"
+            rel="noreferrer"
+            style={{ width: '100%', justifyContent: 'center', marginTop: '16px' }}
+          >
             <IconWhatsApp size={20} />
-            <span>Chat on WhatsApp</span>
+            <span>Chat Live on WhatsApp</span>
           </a>
         </aside>
       </section>

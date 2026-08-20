@@ -3321,3 +3321,148 @@ header.topbar,
     padding: 12px 28px !important;
   }
 }
+
+
+/* =========================================================================
+   COMPREHENSIVE MOBILE RESPONSIVE IMAGE ENGINE (PERFECT FIT ON ALL PHONES)
+   ========================================================================= */
+
+/* Universal Image Fitting Safety */
+img {
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+}
+
+/* 1. Hero Background Media */
+.hero-full-bleed {
+  position: relative !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+.hero-backdrop-media,
+.hero-backdrop-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* 2. Split Image & About Intro Media */
+.split-image-wrap {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  aspect-ratio: 16 / 10 !important;
+  min-height: unset !important;
+}
+
+.split-image-wrap img,
+.split-image img,
+.about-intro-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 18px !important;
+  display: block !important;
+}
+
+/* 3. Course Cards */
+.course-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+.course-card img,
+.course-image img {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9 !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+  border-radius: 16px 16px 0 0 !important;
+}
+
+/* 4. Faculty & Leadership Portraits */
+.leader-card,
+.teacher-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+.leader-card img,
+.teacher-card img,
+.faculty-image img {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1 !important;
+  max-height: 280px !important;
+  object-fit: cover !important;
+  object-position: top center !important;
+  border-radius: 16px !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+/* 5. Campus Gallery */
+.gallery-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  gap: 16px !important;
+  width: 100% !important;
+}
+
+.gallery-item,
+.gallery-card {
+  width: 100% !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+.gallery-item img,
+.gallery-card img {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 10 !important;
+  object-fit: cover !important;
+  border-radius: 14px !important;
+  display: block !important;
+}
+
+/* 6. Video Responsive Wrap */
+.video-responsive-wrap,
+.html5-video-player {
+  width: 100% !important;
+  max-width: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+/* Mobile Screen Specific Optimizations (< 768px) */
+@media (max-width: 768px) {
+  .split-image-wrap {
+    aspect-ratio: 16 / 11 !important;
+  }
+  
+  .course-card img,
+  .course-image img {
+    aspect-ratio: 16 / 10 !important;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .teacher-card img,
+  .leader-card img {
+    max-height: 240px !important;
+  }
+}

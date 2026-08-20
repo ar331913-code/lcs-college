@@ -36,7 +36,7 @@ import './App.css';
 
 const VISITOR_LOG_KEY = 'lcs_visitor_logs';
 const SITE_DATA_KEY = 'lcs_site_data';
-const DATA_VERSION = 'v8_ceo_portrait';
+const DATA_VERSION = 'v9_ceo_name_nkwantabisa';
 const DATA_VERSION_KEY = 'lcs_site_version';
 
 const whatsappNumber = '233242070679';

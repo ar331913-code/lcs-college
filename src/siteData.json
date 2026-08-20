@@ -94,7 +94,7 @@
   "faculty": [
     {
       "id": "fac-ceo",
-      "name": "Mr. Solomon Nkwntabisa",
+      "name": "Mr. Solomon Nkwantabisa",
       "role": "Chief Executive Officer (CEO)",
       "image": "./images/ceo_solomon.jpg",
       "bio": "Leads the strategic vision, institutional growth, and executive leadership of LCS Computer Training College in Ghana."
@@ -157,5 +157,5 @@
       "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
     }
   ],
-  "updatedAt": 1787259533897
+  "updatedAt": 1787260443526
 }

@@ -1,6 +1,6 @@
 
 :root {
-  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.6;
   font-weight: 400;
   color: #1f080b;
@@ -26,7 +26,7 @@ html, body {
   overflow-x: hidden !important;
   scroll-behavior: smooth;
   background: transparent;
-  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
 #root {
@@ -39,7 +39,7 @@ html, body {
 }
 
 h1, h2, h3, h4, h5, h6, .hero-main-title, .brand-name, .btn, .eyebrow {
-  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
 img {

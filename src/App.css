@@ -4407,3 +4407,32 @@ footer.site-footer,
     padding-bottom: 74px !important;
   }
 }
+
+
+/* =========================================================================
+   POPPINS MODERN TYPOGRAPHY ENGINE (PRESTIGIOUS & CRISP)
+   ========================================================================= */
+
+body, html, * {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.hero-main-title,
+.section-heading h2,
+.split-copy h2,
+.brand-name,
+.btn,
+.eyebrow,
+.bottom-nav-item {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+.hero-main-title {
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.eyebrow {
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+}

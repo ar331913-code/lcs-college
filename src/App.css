@@ -3903,3 +3903,143 @@ img {
     ) !important;
   }
 }
+
+
+/* =========================================================================
+   DEEP RICH HERO IMAGE COLORS + PRESTIGE HARVARD CRIMSON FOOTER
+   ========================================================================= */
+
+/* Hero Image Rich Vibrant Colors & Contrast */
+.hero-backdrop-img,
+.hero-backdrop-media img {
+  filter: saturate(1.28) contrast(1.15) brightness(0.85) !important;
+  transition: filter 0.3s ease;
+}
+
+/* Deep High-Contrast Gradient Overlay for 100% Font Legibility */
+.hero-gradient-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 2 !important;
+  background: linear-gradient(
+    90deg,
+    rgba(8, 2, 4, 0.95) 0%,
+    rgba(16, 3, 8, 0.88) 45%,
+    rgba(26, 5, 13, 0.65) 75%,
+    rgba(8, 2, 4, 0.40) 100%
+  ) !important;
+}
+
+.hero-main-title {
+  color: #ffffff !important;
+  text-shadow: 0 4px 22px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.95) !important;
+}
+
+.hero-eyebrow {
+  color: #ffccd5 !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95) !important;
+}
+
+.hero-lead-text {
+  color: #ffffff !important;
+  background: rgba(10, 2, 5, 0.65) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95) !important;
+}
+
+@media (max-width: 768px) {
+  .hero-gradient-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(8, 2, 4, 0.85) 0%,
+      rgba(16, 3, 8, 0.92) 50%,
+      rgba(8, 2, 4, 0.98) 100%
+    ) !important;
+  }
+}
+
+/* Prestige Harvard-Grade Deep Crimson Footer */
+footer.site-footer,
+.site-footer {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 32px 0 0 0 !important;
+  padding: 40px 28px 36px !important;
+  background: linear-gradient(135deg, #180409 0%, #2e0813 60%, #150307 100%) !important;
+  border-top: 2px solid rgba(230, 57, 99, 0.45) !important;
+  border-radius: 24px 24px 0 0 !important;
+  box-shadow: 0 -15px 40px rgba(24, 4, 9, 0.3) !important;
+  color: #fcecef !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 24px !important;
+  box-sizing: border-box !important;
+}
+
+.site-footer .footer-brand {
+  color: #ffffff !important;
+  font-size: 1.25rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.site-footer p {
+  color: rgba(255, 220, 230, 0.85) !important;
+  font-size: 0.94rem !important;
+  margin-top: 8px !important;
+  max-width: 480px;
+}
+
+.footer-links {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 14px !important;
+}
+
+.footer-links a {
+  color: #f7d5dd !important;
+  font-weight: 600 !important;
+  font-size: 0.92rem !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+  padding: 8px 14px !important;
+  border-radius: 10px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.footer-links a:hover {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #e63963, #9e1c39) !important;
+  border-color: transparent !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(230, 57, 99, 0.35) !important;
+}
+
+@media (max-width: 768px) {
+  footer.site-footer,
+  .site-footer {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 30px 18px 32px !important;
+    border-radius: 18px 18px 0 0 !important;
+    gap: 20px !important;
+  }
+
+  .footer-links {
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
+  .footer-links a {
+    font-size: 0.86rem !important;
+    padding: 7px 11px !important;
+  }
+}

@@ -36,7 +36,7 @@ import './App.css';
 
 const VISITOR_LOG_KEY = 'lcs_visitor_logs';
 const SITE_DATA_KEY = 'lcs_site_data';
-const DATA_VERSION = 'v6_networking_courses';
+const DATA_VERSION = 'v7_faculty_teachers';
 const DATA_VERSION_KEY = 'lcs_site_version';
 
 const whatsappNumber = '233242070679';
@@ -166,7 +166,7 @@ const getMergedSiteData = () => {
       ...defaultSiteData,
       ...parsed,
       courses: Array.isArray(parsed.courses) && parsed.courses.length >= 11 ? parsed.courses : defaultCourses,
-      faculty: Array.isArray(parsed.faculty) && parsed.faculty.length > 0 ? parsed.faculty : defaultFaculty,
+      faculty: Array.isArray(parsed.faculty) && parsed.faculty.length >= 6 ? parsed.faculty : defaultFaculty,
       gallery: Array.isArray(parsed.gallery) && parsed.gallery.length > 0 ? parsed.gallery : defaultSiteData.gallery,
     };
   } catch {
@@ -1239,13 +1239,13 @@ function AboutPage({ siteData }) {
 
       <section className="content-section">
         <div className="section-heading">
-          <p className="eyebrow">Leadership</p>
-          <h2>Meet the people guiding our vision.</h2>
+          <p className="eyebrow">College Leadership</p>
+          <h2>Meet the leadership guiding our vision.</h2>
         </div>
 
         <div className="leader-grid">
-          {facultyMembers.slice(0, 2).map((person) => (
-            <article key={person.id || person.name} className="leader-card">
+          {facultyMembers.slice(0, 1).map((person) => (
+            <article key={person.id || person.name} className="leader-card" style={{ maxWidth: '640px', margin: '0 auto' }}>
               <SafeImage 
                 src={person.image} 
                 alt={person.name} 
@@ -1261,24 +1261,25 @@ function AboutPage({ siteData }) {
         </div>
       </section>
 
-      {facultyMembers.length > 2 && (
+      {facultyMembers.length > 1 && (
         <section className="content-section">
           <div className="section-heading">
-            <p className="eyebrow">Our teaching team</p>
-            <h2>Experienced staff supporting every learner.</h2>
+            <p className="eyebrow">Our Teaching Faculty</p>
+            <h2>Experienced instructors dedicated to hands-on practical learning.</h2>
           </div>
 
           <div className="teacher-grid">
-            {facultyMembers.slice(2).map((person) => (
+            {facultyMembers.slice(1).map((person) => (
               <article key={person.id || person.name} className="teacher-card">
                 <SafeImage 
                   src={person.image} 
                   alt={person.name} 
                   fallbackText={person.name}
                 />
-                <div>
+                <div className="teacher-info">
                   <h3>{person.name}</h3>
                   <span>{person.role}</span>
+                  {person.bio && <p style={{ fontSize: '0.84rem', color: 'rgba(26, 4, 7, 0.75)', marginTop: '6px', lineHeight: '1.45' }}>{person.bio}</p>}
                 </div>
               </article>
             ))}

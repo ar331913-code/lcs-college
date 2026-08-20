@@ -3775,3 +3775,131 @@ img {
   border-radius: 50%;
   display: block;
 }
+
+
+/* =========================================================================
+   HERO BACKDROP IMAGE VISIBILITY & CRYSTAL-CLEAR WRITING TYPOGRAPHY
+   ========================================================================= */
+
+.hero-full-bleed {
+  position: relative !important;
+  width: 100% !important;
+  min-height: 580px !important;
+  overflow: hidden !important;
+}
+
+/* Ensure backdrop image layer is always visible on all phones and desktops */
+.hero-backdrop-media,
+.hero-backdrop-media .progressive-image-wrapper {
+  position: absolute !important;
+  inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1 !important;
+  display: block !important;
+  overflow: hidden !important;
+}
+
+.hero-backdrop-img,
+.hero-backdrop-media img {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+
+.hero-gradient-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 2 !important;
+  background: linear-gradient(
+    90deg,
+    rgba(14, 3, 7, 0.88) 0%,
+    rgba(22, 5, 11, 0.72) 42%,
+    rgba(30, 8, 16, 0.45) 75%,
+    rgba(0, 0, 0, 0.25) 100%
+  ) !important;
+}
+
+.hero-inner-content {
+  position: relative !important;
+  z-index: 10 !important;
+  max-width: 720px !important;
+  width: 100% !important;
+  text-align: left !important;
+}
+
+/* Crystal-Clear Hero Writing with Outfit & Plus Jakarta Sans */
+.hero-main-title {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif !important;
+  color: #ffffff !important;
+  font-size: clamp(2.3rem, 5.2vw, 4.4rem) !important;
+  font-weight: 900 !important;
+  line-height: 1.06 !important;
+  letter-spacing: -0.035em !important;
+  margin: 0 0 16px !important;
+  text-shadow: 0 3px 16px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.95) !important;
+}
+
+.hero-eyebrow {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  color: #ffd6de !important;
+  font-size: 0.85rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 12px !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9) !important;
+}
+
+.hero-lead-text {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  color: #ffffff !important;
+  font-size: 1.12rem !important;
+  font-weight: 500 !important;
+  line-height: 1.65 !important;
+  max-width: 680px !important;
+  margin-top: 14px !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9) !important;
+  background: rgba(14, 4, 8, 0.52) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  padding: 16px 20px !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+}
+
+@media (max-width: 768px) {
+  .hero-full-bleed {
+    min-height: 520px !important;
+    padding: 32px 16px !important;
+  }
+
+  .hero-main-title {
+    font-size: 2.15rem !important;
+    line-height: 1.12 !important;
+  }
+
+  .hero-lead-text {
+    font-size: 0.96rem !important;
+    padding: 14px 16px !important;
+    line-height: 1.55 !important;
+  }
+
+  .hero-gradient-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(14, 3, 7, 0.78) 0%,
+      rgba(22, 5, 11, 0.85) 60%,
+      rgba(30, 8, 16, 0.92) 100%
+    ) !important;
+  }
+}

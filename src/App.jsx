@@ -429,14 +429,28 @@ function CampusMapSection({ siteData, showHeader = true }) {
   );
 }
 
-// High-Performance SafeImage Component with Skeleton Blur-Up & Fast Async Decoding
+// Universal Asset Path Resolver for GitHub Pages & Local Dev
+export const resolveAssetPath = (assetPath) => {
+  if (!assetPath) return '';
+  if (assetPath.startsWith('data:') || assetPath.startsWith('http:') || assetPath.startsWith('https:') || assetPath.startsWith('blob:')) {
+    return assetPath;
+  }
+  const clean = assetPath.replace(/^(\.\/|\/)/, '');
+  const base = import.meta.env.BASE_URL || '/';
+  const cleanBase = base.endsWith('/') ? base : `${base}/`;
+  return `${cleanBase}${clean}`;
+};
+
+// High-Performance SafeImage Component with Auto Asset Path Resolution & Progressive Loading
 function SafeImage({ src, alt, className = '', fallbackText = 'Course Image', style = {} }) {
-  const [currentSrc, setCurrentSrc] = useState(src);
+  const resolved = resolveAssetPath(src);
+  const [currentSrc, setCurrentSrc] = useState(resolved);
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setCurrentSrc(src);
+    const res = resolveAssetPath(src);
+    setCurrentSrc(res);
     setHasError(false);
     setIsLoaded(false);
   }, [src]);
@@ -461,6 +475,22 @@ function SafeImage({ src, alt, className = '', fallbackText = 'Course Image', st
       </div>
     );
   }
+
+  return (
+    <div className={`progressive-image-wrapper ${isLoaded ? 'loaded' : 'loading'} ${className}`} style={style}>
+      {!isLoaded && <div className="image-skeleton-shimmer" />}
+      <img
+        src={currentSrc}
+        alt={alt || fallbackText}
+        className={`progressive-img ${isLoaded ? 'visible' : 'hidden'}`}
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setIsLoaded(true)}
+        onError={handleImageError}
+      />
+    </div>
+  );
+}
 
   return (
     <div className={`progressive-image-wrapper ${isLoaded ? 'loaded' : 'loading'} ${className}`} style={style}>

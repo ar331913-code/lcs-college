@@ -984,20 +984,39 @@ function SiteLayout() {
       </main>
 
       <footer className="site-footer">
-        <div>
+        <div className="footer-content-wrap">
           <span className="brand-name footer-brand">LCS COMPUTER TRAINING COLLEGE</span>
-          <p>Training the next generation of digital professionals in Ghana.</p>
-        </div>
-
-        <div className="footer-links">
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/courses">Courses</NavLink>
-          <NavLink to="/requirements">Requirements</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
-          <NavLink to="/admin" className="admin-link-discrete">Admin Portal</NavLink>
+          <p>Training the next generation of digital professionals in Ghana. Accredited by Ghana Education Service.</p>
+          <div className="footer-copyright">
+            <span>© {new Date().getFullYear()} LCS Computer Training College. All rights reserved.</span>
+            <NavLink to="/admin" className="admin-link-discrete">Admin</NavLink>
+          </div>
         </div>
       </footer>
+
+      {/* Modern App-Style Bottom Navigation Bar */}
+      <nav className="mobile-bottom-nav" aria-label="Bottom Navigation">
+        <NavLink to="/" className={({ isActive }) => (isActive ? 'bottom-nav-item active' : 'bottom-nav-item')}>
+          <IconGraduationCap size={20} className="bottom-nav-icon" />
+          <span className="bottom-nav-label">Home</span>
+        </NavLink>
+        <NavLink to="/about" className={({ isActive }) => (isActive ? 'bottom-nav-item active' : 'bottom-nav-item')}>
+          <IconUsers size={20} className="bottom-nav-icon" />
+          <span className="bottom-nav-label">About</span>
+        </NavLink>
+        <NavLink to="/courses" className={({ isActive }) => (isActive ? 'bottom-nav-item active' : 'bottom-nav-item')}>
+          <IconBookOpen size={20} className="bottom-nav-icon" />
+          <span className="bottom-nav-label">Courses</span>
+        </NavLink>
+        <NavLink to="/requirements" className={({ isActive }) => (isActive ? 'bottom-nav-item active' : 'bottom-nav-item')}>
+          <IconCheckCircle size={20} className="bottom-nav-icon" />
+          <span className="bottom-nav-label">Admission</span>
+        </NavLink>
+        <NavLink to="/contact" className={({ isActive }) => (isActive ? 'bottom-nav-item active' : 'bottom-nav-item')}>
+          <IconPhone size={20} className="bottom-nav-icon" />
+          <span className="bottom-nav-label">Contact</span>
+        </NavLink>
+      </nav>
 
       <a className="whatsapp-float" href={whatsappLink} target="_blank" rel="noreferrer" title="Chat with admissions on WhatsApp">
         <IconWhatsApp size={20} />

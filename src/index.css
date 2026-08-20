@@ -1,9 +1,9 @@
 
 :root {
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.6;
   font-weight: 400;
-  color: #1f080b;
+  color: #1a0407;
   background:
     radial-gradient(circle at top, rgba(215, 25, 32, 0.08), transparent 25%),
     linear-gradient(180deg, #fcf8f8 0%, #f7eded 28%, #fbf5f5 100%);
@@ -26,7 +26,7 @@ html, body {
   overflow-x: hidden !important;
   scroll-behavior: smooth;
   background: transparent;
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
 #root {
@@ -38,8 +38,14 @@ html, body {
   overflow-x: hidden !important;
 }
 
-h1, h2, h3, h4, h5, h6, .hero-main-title, .brand-name, .btn, .eyebrow {
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif !important;
+/* Harvard Ivy League Serif Headings */
+h1, h2, h3, h4, .hero-main-title, .brand-name, .page-hero h1, .section-heading h2, .split-copy h2, .footer-brand {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif !important;
+  letter-spacing: -0.02em;
+}
+
+.eyebrow, .btn, .bottom-nav-item, .hero-badge, .course-duration, .promo-tag, .stat-card {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
 img {

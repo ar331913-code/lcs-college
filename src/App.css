@@ -4436,3 +4436,76 @@ body, html, * {
   font-weight: 700 !important;
   letter-spacing: 0.12em !important;
 }
+
+
+/* =========================================================================
+   OFFICIAL HARVARD UNIVERSITY TYPOGRAPHY SYSTEM (PLAYFAIR DISPLAY & INTER)
+   ========================================================================= */
+
+body, html, p, span, li, a, input, textarea, select {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* Prestigious Harvard Ivy League Serif Headings */
+h1, h2, h3,
+.hero-main-title,
+.section-heading h2,
+.split-copy h2,
+.brand-name,
+.footer-brand,
+.page-hero h1,
+.feature-card h3,
+.course-body h3,
+.leader-body h3,
+.teacher-card h3,
+.requirements-panel h3,
+.preloader-title {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.hero-main-title {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-weight: 800 !important;
+  font-size: clamp(2.3rem, 5.2vw, 4.4rem) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.025em !important;
+  color: #ffffff !important;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.92), 0 1px 4px rgba(0, 0, 0, 0.95) !important;
+}
+
+.section-heading h2,
+.split-copy h2 {
+  font-size: clamp(1.85rem, 3.2vw, 2.75rem) !important;
+  line-height: 1.15 !important;
+  color: #1a0407 !important;
+}
+
+.btn,
+.eyebrow,
+.hero-eyebrow,
+.hero-badge,
+.bottom-nav-item,
+.course-duration,
+.promo-tag,
+.stat-card strong,
+.stat-card span,
+.preloader-motto {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+.eyebrow,
+.hero-eyebrow {
+  font-size: 0.76rem !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+}
+
+.lead,
+.hero-lead-text {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 1.05rem !important;
+  line-height: 1.68 !important;
+}

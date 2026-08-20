@@ -36,7 +36,7 @@ import './App.css';
 
 const VISITOR_LOG_KEY = 'lcs_visitor_logs';
 const SITE_DATA_KEY = 'lcs_site_data';
-const DATA_VERSION = 'v5_interactive_map';
+const DATA_VERSION = 'v6_networking_courses';
 const DATA_VERSION_KEY = 'lcs_site_version';
 
 const whatsappNumber = '233242070679';
@@ -162,24 +162,10 @@ const getMergedSiteData = () => {
 
     const parsed = JSON.parse(saved);
 
-    // Sanitize any broken legacy URLs from user's cache
-    const sanitizedCourses = (Array.isArray(parsed.courses) ? parsed.courses : defaultCourses).map((c) => {
-      if (c.title === 'Information Technology') {
-        return { ...c, image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80' };
-      }
-      if (c.title === 'Microsoft Office' && (!c.image || c.image.includes('1460925895917'))) {
-        return { ...c, image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=80' };
-      }
-      if (c.title === 'Advanced AI') {
-        return { ...c, image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80' };
-      }
-      return c;
-    });
-
     return {
       ...defaultSiteData,
       ...parsed,
-      courses: sanitizedCourses,
+      courses: Array.isArray(parsed.courses) && parsed.courses.length >= 11 ? parsed.courses : defaultCourses,
       faculty: Array.isArray(parsed.faculty) && parsed.faculty.length > 0 ? parsed.faculty : defaultFaculty,
       gallery: Array.isArray(parsed.gallery) && parsed.gallery.length > 0 ? parsed.gallery : defaultSiteData.gallery,
     };

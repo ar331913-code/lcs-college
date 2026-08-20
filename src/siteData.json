@@ -17,36 +17,43 @@
       "id": "it-fundamentals",
       "title": "Information Technology",
       "duration": "Flexible",
-      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
-      "text": "95% practical training in IT fundamentals, computer architecture, enterprise systems, and networking solutions."
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
+      "text": "95% practical training in IT fundamentals, computer architecture, enterprise software, and modern digital productivity."
+    },
+    {
+      "id": "computer-networking",
+      "title": "Computer Networking",
+      "duration": "Flexible",
+      "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80",
+      "text": "Master LAN/WAN design, Cisco router & switch configuration, IP subnetting, network troubleshooting, and server cabling."
     },
     {
       "id": "cybersecurity",
       "title": "Cybersecurity",
       "duration": "Flexible",
-      "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
-      "text": "Learn threat detection, system security, ethical hacking, network defense, and practical incident response."
+      "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
+      "text": "Learn threat detection, system security, ethical hacking, network defense, firewalls, and incident response."
     },
     {
       "id": "programming",
       "title": "Programming",
       "duration": "Flexible",
       "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
-      "text": "95% hands-on coding with multiple languages (Python, JavaScript, Java, C++) and modern development frameworks."
+      "text": "95% hands-on coding with multiple languages (Python, JavaScript, Java, C++) and modern software engineering principles."
     },
     {
       "id": "database-management",
       "title": "Database Management",
       "duration": "Flexible",
-      "image": "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=1200&q=80",
-      "text": "Master relational and NoSQL database design, SQL querying, PostgreSQL/MySQL administration, and cloud storage."
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+      "text": "Master relational and NoSQL database design, SQL querying, PostgreSQL/MySQL administration, and cloud datastores."
     },
     {
       "id": "graphic-design",
       "title": "Graphic Design",
       "duration": "Flexible",
-      "image": "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=80",
-      "text": "Professional design tools (Photoshop, Illustrator, Figma) and visual communication for branding and UI."
+      "image": "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?auto=format&fit=crop&w=1200&q=80",
+      "text": "Professional design tools (Photoshop, Illustrator, Figma) and visual communication for branding, marketing, and UI."
     },
     {
       "id": "hardware-engineering",
@@ -66,21 +73,21 @@
       "id": "microsoft-office",
       "title": "Microsoft Office",
       "duration": "Flexible",
-      "image": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=80",
-      "text": "Master Advanced Excel, Word documentation, PowerPoint presentations, and Access databases for office productivity."
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+      "text": "Master Advanced Excel financial models, Word documentation, PowerPoint presentations, and Access databases."
     },
     {
       "id": "website-development",
       "title": "Website Development",
       "duration": "Flexible",
       "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
-      "text": "Full-stack web development with modern HTML/CSS, JavaScript, React, Node.js, and real live client deployments."
+      "text": "Full-stack web development with modern HTML5/CSS3, JavaScript, React, Node.js, and live hosting deployments."
     },
     {
       "id": "advanced-ai",
       "title": "Advanced AI",
       "duration": "Flexible",
-      "image": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
       "text": "Artificial Intelligence, machine learning principles, neural networks, and building practical AI-powered workflows."
     }
   ],
@@ -136,5 +143,5 @@
       "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
     }
   ],
-  "updatedAt": 1787249950907
+  "updatedAt": 1787255947297
 }

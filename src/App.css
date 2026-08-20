@@ -3704,3 +3704,74 @@ img {
     font-weight: 700 !important;
   }
 }
+
+
+/* =========================================================================
+   REFINED HERO BORDER RADIUS & CIRCULAR PRELOADER LOGO
+   ========================================================================= */
+
+/* Hero Banner Modern Clean Border Radius */
+.hero-section,
+.hero-full-bleed {
+  border-radius: 0 0 24px 24px !important;
+  overflow: hidden !important;
+}
+
+.hero-backdrop-media,
+.hero-backdrop-img {
+  border-radius: 0 0 24px 24px !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 768px) {
+  .hero-section,
+  .hero-full-bleed {
+    border-radius: 0 0 18px 18px !important;
+  }
+
+  .hero-backdrop-media,
+  .hero-backdrop-img {
+    border-radius: 0 0 18px 18px !important;
+  }
+}
+
+/* Circular Preloader Crest with Actual Logo */
+.preloader-crest-wrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+}
+
+.preloader-spinner-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 3.5px solid rgba(125, 29, 50, 0.14);
+  border-top-color: #7d1d32;
+  border-right-color: #c94060;
+  animation: preloaderSpin 1.1s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
+}
+
+.preloader-logo-box {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(125, 29, 50, 0.18);
+  overflow: hidden;
+  padding: 4px;
+}
+
+.preloader-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  display: block;
+}

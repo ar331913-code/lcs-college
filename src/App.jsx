@@ -607,9 +607,10 @@ function BrandLogo({ logoImage, logoText = 'LCS' }) {
 }
 
 
-// Luxury Harvard-Style Animated Page Loading Screen
+// Luxury Harvard-Style Animated Page Loading Screen with Actual College Crest Logo
 function PageLoadingScreen({ isVisible, logoImage, logoText = 'LCS' }) {
   const [shouldRender, setShouldRender] = useState(true);
+  const resolvedLogo = resolveAssetPath(logoImage || './images/logo.png');
 
   useEffect(() => {
     if (!isVisible) {
@@ -628,11 +629,14 @@ function PageLoadingScreen({ isVisible, logoImage, logoText = 'LCS' }) {
         <div className="preloader-crest-wrap">
           <div className="preloader-spinner-ring" />
           <div className="preloader-logo-box">
-            {logoImage ? (
-              <img src={resolveAssetPath(logoImage)} alt="LCS College" className="preloader-logo-img" />
-            ) : (
-              <span className="preloader-logo-text">{logoText || 'LCS'}</span>
-            )}
+            <img
+              src={resolvedLogo}
+              alt="LCS College Crest"
+              className="preloader-logo-img"
+              onError={(e) => {
+                e.target.style.display = 'none';
+              }}
+            />
           </div>
         </div>
         <div className="preloader-text-group">

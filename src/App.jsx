@@ -429,22 +429,23 @@ function CampusMapSection({ siteData, showHeader = true }) {
   );
 }
 
-// Enhanced SafeImage component with automatic retry & fallback
+// High-Performance SafeImage Component with Skeleton Blur-Up & Fast Async Decoding
 function SafeImage({ src, alt, className = '', fallbackText = 'Course Image', style = {} }) {
   const [currentSrc, setCurrentSrc] = useState(src);
   const [hasError, setHasError] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     setCurrentSrc(src);
     setHasError(false);
+    setIsLoaded(false);
   }, [src]);
 
   const handleImageError = () => {
-    // If it was an AI or IT image that failed, fallback to a reliable tech image
     if (alt?.toLowerCase().includes('ai') || alt?.toLowerCase().includes('intelligence')) {
-      setCurrentSrc('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80');
+      setCurrentSrc('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80');
     } else if (alt?.toLowerCase().includes('information') || alt?.toLowerCase().includes('it')) {
-      setCurrentSrc('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80');
+      setCurrentSrc('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80');
     } else {
       setHasError(true);
     }
@@ -462,17 +463,20 @@ function SafeImage({ src, alt, className = '', fallbackText = 'Course Image', st
   }
 
   return (
-    <img
-      src={currentSrc}
-      alt={alt || fallbackText}
-      className={className}
-      style={style}
-      loading="lazy"
-      onError={handleImageError}
-    />
+    <div className={`progressive-image-wrapper ${isLoaded ? 'loaded' : 'loading'} ${className}`} style={style}>
+      {!isLoaded && <div className="image-skeleton-shimmer" />}
+      <img
+        src={currentSrc}
+        alt={alt || fallbackText}
+        className={`progressive-img ${isLoaded ? 'visible' : 'hidden'}`}
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setIsLoaded(true)}
+        onError={handleImageError}
+      />
+    </div>
   );
 }
-
 
 // Top-level ErrorBoundary to prevent blank white screens
 class ErrorBoundary extends React.Component {
@@ -602,8 +606,50 @@ function BrandLogo({ logoImage, logoText = 'LCS' }) {
   return <span className="brand-mark">{logoText || 'LCS'}</span>;
 }
 
+
+// Luxury Harvard-Style Animated Page Loading Screen
+function PageLoadingScreen({ isVisible, logoImage, logoText = 'LCS' }) {
+  const [shouldRender, setShouldRender] = useState(true);
+
+  useEffect(() => {
+    if (!isVisible) {
+      const timer = setTimeout(() => setShouldRender(false), 600);
+      return () => clearTimeout(timer);
+    } else {
+      setShouldRender(true);
+    }
+  }, [isVisible]);
+
+  if (!shouldRender) return null;
+
+  return (
+    <div className={`page-preloader ${!isVisible ? 'preloader-fadeout' : ''}`} aria-hidden={!isVisible}>
+      <div className="preloader-card">
+        <div className="preloader-crest-wrap">
+          <div className="preloader-spinner-ring" />
+          <div className="preloader-logo-box">
+            {logoImage ? (
+              <img src={resolveAssetPath(logoImage)} alt="LCS College" className="preloader-logo-img" />
+            ) : (
+              <span className="preloader-logo-text">{logoText || 'LCS'}</span>
+            )}
+          </div>
+        </div>
+        <div className="preloader-text-group">
+          <h3 className="preloader-title">LCS COMPUTER TRAINING COLLEGE</h3>
+          <p className="preloader-motto">Learn • Build • Launch</p>
+          <div className="preloader-bar-track">
+            <div className="preloader-bar-fill" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function SiteLayout() {
   const [siteData, setSiteData] = useState(getMergedSiteData);
+  const [initialLoading, setInitialLoading] = useState(true);
   const [visitorLogs, setVisitorLogs] = useState(() => getStoredValue(VISITOR_LOG_KEY, []));
   const [isAdmin, setIsAdmin] = useState(() => getStoredValue('lcs_admin_session', false));
   const [showAdminPortal, setShowAdminPortal] = useState(false);
@@ -633,7 +679,10 @@ function SiteLayout() {
           safeSetStorage(SITE_DATA_KEY, cloudData);
         }
       })
-      .catch((err) => console.log('Cloud sync check:', err));
+      .catch((err) => console.log('Cloud sync check:', err))
+      .finally(() => {
+        setTimeout(() => setInitialLoading(false), 400);
+      });
   }, []);
 
   useEffect(() => {
@@ -782,6 +831,7 @@ function SiteLayout() {
 
   return (
     <div className="site-shell">
+      <PageLoadingScreen isVisible={initialLoading} logoImage={siteData.logoImage} logoText={siteData.logo} />
       <header className="topbar">
         <NavLink to="/" className="brand" onClick={() => setMobileMenuOpen(false)}>
           <BrandLogo logoImage={siteData.logoImage} logoText={siteData.logo} />

@@ -481,7 +481,12 @@
 }
 
 .leader-card img {
-  height: 320px;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 18px !important;
+  display: block !important;
 }
 
 .leader-body {
@@ -3463,8 +3468,13 @@ img {
 
   .teacher-card img,
   .leader-card img {
-    max-height: 240px !important;
-  }
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 18px !important;
+  display: block !important;
+}
 }
 
 
@@ -4581,7 +4591,9 @@ h1, h2, h3,
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  object-position: top center !important;
+  object-position: center !important;
+  border-radius: 18px !important;
+  display: block !important;
 }
 
 /* Teaching Faculty Cards Container */
@@ -4739,7 +4751,7 @@ h1, h2, h3,
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  object-position: top center !important;
+  object-position: center !important;
   border-radius: 18px !important;
   display: block !important;
 }

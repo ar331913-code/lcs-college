@@ -1013,13 +1013,18 @@ function HomePage({ siteData }) {
   return (
     <>
       <section className="hero-section hero-full-bleed">
-        {/* Full-width Background Image Layer covering whole hero on all devices */}
+        {/* Direct High-Performance Eager Hero Image for Instant Mobile Loading */}
         <div className="hero-backdrop-media">
-          <SafeImage 
-            src={siteData.heroImage} 
+          <img 
+            src={resolveAssetPath(siteData.heroImage || './images/heroImage.jpg')} 
             alt="Students learning together at LCS"
-            fallbackText="LCS Computer Training College"
             className="hero-backdrop-img"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            onError={(e) => {
+              e.target.src = 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80';
+            }}
           />
           <div className="hero-gradient-overlay" />
         </div>

@@ -492,22 +492,6 @@ function SafeImage({ src, alt, className = '', fallbackText = 'Course Image', st
   );
 }
 
-  return (
-    <div className={`progressive-image-wrapper ${isLoaded ? 'loaded' : 'loading'} ${className}`} style={style}>
-      {!isLoaded && <div className="image-skeleton-shimmer" />}
-      <img
-        src={currentSrc}
-        alt={alt || fallbackText}
-        className={`progressive-img ${isLoaded ? 'visible' : 'hidden'}`}
-        loading="lazy"
-        decoding="async"
-        onLoad={() => setIsLoaded(true)}
-        onError={handleImageError}
-      />
-    </div>
-  );
-}
-
 // Top-level ErrorBoundary to prevent blank white screens
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -604,18 +588,6 @@ function App() {
   );
 }
 
-
-// Universal Asset Path Resolver for GitHub Pages & Local Dev
-export const resolveAssetPath = (assetPath) => {
-  if (!assetPath) return '';
-  if (assetPath.startsWith('data:') || assetPath.startsWith('http:') || assetPath.startsWith('https:') || assetPath.startsWith('blob:')) {
-    return assetPath;
-  }
-  const clean = assetPath.replace(/^(\.\/|\/)/, '');
-  const base = import.meta.env.BASE_URL || '/';
-  const cleanBase = base.endsWith('/') ? base : `${base}/`;
-  return `${cleanBase}${clean}`;
-};
 
 // Resilient BrandLogo component that renders logo image or stylish LCS mark with zero layout shift
 function BrandLogo({ logoImage, logoText = 'LCS' }) {

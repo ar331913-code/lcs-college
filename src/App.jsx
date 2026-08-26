@@ -36,7 +36,7 @@ import './App.css';
 
 const VISITOR_LOG_KEY = 'lcs_visitor_logs';
 const SITE_DATA_KEY = 'lcs_site_data';
-const DATA_VERSION = 'v10_ceo_homepage_crop';
+const DATA_VERSION = 'v13_authentic_campus_photos';
 const DATA_VERSION_KEY = 'lcs_site_version';
 
 const whatsappNumber = '233242070679';

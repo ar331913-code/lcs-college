@@ -980,29 +980,7 @@ function SiteLayout() {
         </div>
       </footer>
 
-      {/* Modern App-Style Bottom Navigation Bar */}
-      <nav className="mobile-bottom-nav" aria-label="Bottom Navigation">
-        <NavLink to="/" className={({ isActive }) => (isActive ? 'bottom-nav-item active' : 'bottom-nav-item')}>
-          <IconGraduationCap size={20} className="bottom-nav-icon" />
-          <span className="bottom-nav-label">Home</span>
-        </NavLink>
-        <NavLink to="/about" className={({ isActive }) => (isActive ? 'bottom-nav-item active' : 'bottom-nav-item')}>
-          <IconUsers size={20} className="bottom-nav-icon" />
-          <span className="bottom-nav-label">About</span>
-        </NavLink>
-        <NavLink to="/courses" className={({ isActive }) => (isActive ? 'bottom-nav-item active' : 'bottom-nav-item')}>
-          <IconBookOpen size={20} className="bottom-nav-icon" />
-          <span className="bottom-nav-label">Courses</span>
-        </NavLink>
-        <NavLink to="/requirements" className={({ isActive }) => (isActive ? 'bottom-nav-item active' : 'bottom-nav-item')}>
-          <IconCheckCircle size={20} className="bottom-nav-icon" />
-          <span className="bottom-nav-label">Admission</span>
-        </NavLink>
-        <NavLink to="/contact" className={({ isActive }) => (isActive ? 'bottom-nav-item active' : 'bottom-nav-item')}>
-          <IconPhone size={20} className="bottom-nav-icon" />
-          <span className="bottom-nav-label">Contact</span>
-        </NavLink>
-      </nav>
+      
 
       <a className="whatsapp-float" href={whatsappLink} target="_blank" rel="noreferrer" title="Chat with admissions on WhatsApp">
         <IconWhatsApp size={20} />

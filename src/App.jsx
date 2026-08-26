@@ -434,6 +434,9 @@ function SafeImage({ src, alt, className = '', fallbackText = 'Course Image', st
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Compute webp equivalent if local image
+  const webpSrc = resolved && resolved.endsWith('.jpg') ? resolved.replace(/\.jpg$/, '.webp') : null;
+
   useEffect(() => {
     const res = resolveAssetPath(src);
     setCurrentSrc(res);
@@ -465,15 +468,18 @@ function SafeImage({ src, alt, className = '', fallbackText = 'Course Image', st
   return (
     <div className={`progressive-image-wrapper ${isLoaded ? 'loaded' : 'loading'} ${className}`} style={style}>
       {!isLoaded && <div className="image-skeleton-shimmer" />}
-      <img
-        src={currentSrc}
-        alt={alt || fallbackText}
-        className={`progressive-img ${isLoaded ? 'visible' : 'hidden'}`}
-        loading="lazy"
-        decoding="async"
-        onLoad={() => setIsLoaded(true)}
-        onError={handleImageError}
-      />
+      <picture>
+        {webpSrc && <source srcSet={webpSrc} type="image/webp" />}
+        <img
+          src={currentSrc}
+          alt={alt || fallbackText}
+          className={`progressive-img ${isLoaded ? 'visible' : 'hidden'}`}
+          loading="lazy"
+          decoding="async"
+          onLoad={() => setIsLoaded(true)}
+          onError={handleImageError}
+        />
+      </picture>
     </div>
   );
 }
@@ -998,17 +1004,20 @@ function HomePage({ siteData }) {
       <section className="hero-section hero-full-bleed">
         {/* Direct High-Performance Eager Hero Image for Instant Mobile Loading */}
         <div className="hero-backdrop-media">
-          <img 
-            src={resolveAssetPath(siteData.heroImage || './images/heroImage.jpg')} 
-            alt="Students learning together at LCS"
-            className="hero-backdrop-img"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-            onError={(e) => {
-              e.target.src = 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80';
-            }}
-          />
+          <picture>
+            <source srcSet={resolveAssetPath('./images/heroImage.webp')} type="image/webp" />
+            <img 
+              src={resolveAssetPath(siteData.heroImage || './images/heroImage.jpg')} 
+              alt="Students learning in the LCS computer lab"
+              className="hero-backdrop-img"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              onError={(e) => {
+                e.target.src = 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80';
+              }}
+            />
+          </picture>
           <div className="hero-gradient-overlay" />
         </div>
 

@@ -1061,7 +1061,7 @@ function HeroSlider({ siteData }) {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 3000); // changes smoothly every 3 seconds
+    }, 6000); // changes smoothly every 6 seconds // changes smoothly every 3 seconds
 
     return () => clearInterval(timer);
   }, []);

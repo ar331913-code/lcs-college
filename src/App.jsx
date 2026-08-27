@@ -1061,7 +1061,7 @@ function HeroSlider({ siteData }) {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 6000); // changes smoothly every 6 seconds // changes smoothly every 3 seconds
+    }, 6000); // 6 seconds
 
     return () => clearInterval(timer);
   }, []);
@@ -1069,8 +1069,8 @@ function HeroSlider({ siteData }) {
   const slide = heroSlides[currentSlide];
 
   return (
-    <div className="hero-slider-wrapper">
-      {/* Background Sliding Images */}
+    <section className="hero-full-bleed-slider">
+      {/* Background Sliding Images spanning 100% full screen width and height */}
       <div className="hero-slider-media">
         {heroSlides.map((s, idx) => {
           const isActive = idx === currentSlide;
@@ -1097,50 +1097,51 @@ function HeroSlider({ siteData }) {
         <div className="hero-gradient-overlay" />
       </div>
 
-      {/* Hero Writings Overlaid Directly on Top of Sliding Images */}
-      <div className="hero-inner-content">
-        <div className="hero-badge">
-          <span className="pulse-dot"></span>
-          <IconGraduationCap size={16} className="hero-badge-icon" />
-          <span key={slide.badge} className="hero-fade-text">{slide.badge}</span>
-        </div>
+      {/* Centered Content Container */}
+      <div className="hero-content-container">
+        <div className="hero-inner-content">
+          <div className="hero-badge">
+            <span className="pulse-dot"></span>
+            <IconGraduationCap size={16} className="hero-badge-icon" />
+            <span key={slide.badge} className="hero-fade-text">{slide.badge}</span>
+          </div>
 
-        <p className="eyebrow hero-eyebrow">Accredited by Ghana Education Service</p>
-        
-        <h1 className="hero-main-title">
-          <span key={slide.title} className="hero-fade-text hero-title-text">{slide.title}</span>
-        </h1>
-        
-        <p className="lead hero-lead-text">
-          <span key={slide.lead} className="hero-fade-text">{slide.lead}</span>
-        </p>
+          <p className="eyebrow hero-eyebrow">Accredited by Ghana Education Service</p>
+          
+          <h1 className="hero-main-title">
+            <span key={slide.title} className="hero-fade-text hero-title-text">{slide.title}</span>
+          </h1>
+          
+          <p className="lead hero-lead-text">
+            <span key={slide.lead} className="hero-fade-text">{slide.lead}</span>
+          </p>
 
-        <div className="button-row hero-button-row">
-          <NavLink to="/courses" className="btn btn-primary btn-hero-primary btn-with-icon">
-            <span>Explore Programs</span>
-            <IconArrowRight size={16} />
-          </NavLink>
-          <NavLink to="/contact" className="btn btn-secondary btn-hero-secondary">
-            Apply Online →
-          </NavLink>
-        </div>
+          <div className="button-row hero-button-row">
+            <NavLink to="/courses" className="btn btn-primary btn-hero-primary btn-with-icon">
+              <span>Explore Programs</span>
+              <IconArrowRight size={16} />
+            </NavLink>
+            <NavLink to="/contact" className="btn btn-secondary btn-hero-secondary">
+              Apply Online →
+            </NavLink>
+          </div>
 
-        <div className="stats-grid hero-stats-grid">
-          {stats.map((stat) => (
-            <div key={stat.label} className="stat-card hero-stat-card">
-              <strong>{stat.value}</strong>
-              <span>{stat.label}</span>
-            </div>
-          ))}
-        </div>
+          <div className="stats-grid hero-stats-grid">
+            {stats.map((stat) => (
+              <div key={stat.label} className="stat-card hero-stat-card">
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </div>
+            ))}
+          </div>
 
-        <div className="hero-bottom-promo-pill">
-          <span className="promo-tag">{siteData?.promoTitle || '95% Practical'}</span>
-          <span>{siteData?.promoText || 'Flexible schedules with regular and weekend sessions. Hostel facilities available.'}</span>
+          <div className="hero-bottom-promo-pill">
+            <span className="promo-tag">{siteData?.promoTitle || '95% Practical'}</span>
+            <span>{siteData?.promoText || 'Flexible schedules with regular and weekend sessions. Hostel facilities available.'}</span>
+          </div>
         </div>
       </div>
-
-          </div>
+    </section>
   );
 }
 
@@ -1151,10 +1152,7 @@ function HomePage({ siteData }) {
 
   return (
     <>
-      <section className="hero-section hero-full-bleed">
-        {/* Direct High-Performance Eager Hero Image for Instant Mobile Loading */}
-        <HeroSlider siteData={siteData} />
-      </section>
+      <HeroSlider siteData={siteData} />
 
       <section className="content-section">
         <div className="section-heading">

@@ -5190,3 +5190,59 @@ footer.site-footer,
     width: 24px !important;
   }
 }
+
+
+/* =========================================================================
+   HERO SLIDER WITH TEXT OVERLAY ANIMATIONS
+   ========================================================================= */
+
+.hero-slider-wrapper {
+  position: relative !important;
+  width: 100% !important;
+  min-height: 600px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.hero-slider-media {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+  border-radius: inherit !important;
+}
+
+.hero-fade-text {
+  display: inline-block !important;
+  animation: heroTextFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes heroTextFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-title-text {
+  letter-spacing: -0.03em !important;
+}
+
+@media (max-width: 960px) {
+  .hero-slider-wrapper {
+    min-height: 520px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-slider-wrapper {
+    min-height: 480px !important;
+  }
+}

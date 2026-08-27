@@ -1140,19 +1140,7 @@ function HeroSlider({ siteData }) {
         </div>
       </div>
 
-      {/* Slide Navigation Indicator Pills */}
-      <div className="hero-slide-dots" aria-label="Hero slider pagination">
-        {heroSlides.map((_, idx) => (
-          <button
-            key={idx}
-            type="button"
-            className={`hero-dot ${idx === currentSlide ? 'active' : ''}`}
-            onClick={() => setCurrentSlide(idx)}
-            aria-label={`Slide ${idx + 1}`}
-          />
-        ))}
-      </div>
-    </div>
+          </div>
   );
 }
 

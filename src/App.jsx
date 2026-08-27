@@ -996,6 +996,94 @@ function SiteLayout() {
   );
 }
 
+
+const heroSlides = [
+  {
+    image: './images/heroImage.jpg',
+    webp: './images/heroImage.webp',
+    alt: 'Students learning in LCS computer laboratory'
+  },
+  {
+    image: './images/campus_lab_coding.jpg',
+    webp: './images/campus_lab_coding.webp',
+    alt: 'Mr. Solomon mentoring student on laptop'
+  },
+  {
+    image: './images/campus_classroom_overview.jpg',
+    webp: './images/campus_classroom_overview.webp',
+    alt: 'Computer Training Laboratory with students and projector'
+  },
+  {
+    image: './images/campus_student_focus.jpg',
+    webp: './images/campus_student_focus.webp',
+    alt: 'Software development and programming practical lab'
+  },
+  {
+    image: './images/campus_uniform_session.jpg',
+    webp: './images/campus_uniform_session.webp',
+    alt: 'LCS students in class with CEO'
+  },
+  {
+    image: './images/campus_hardware_workshop.jpg',
+    webp: './images/campus_hardware_workshop.webp',
+    alt: 'Hands-on motherboard and hardware engineering workshop'
+  }
+];
+
+function HeroSlider() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 3000); // changes every 3 seconds
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="hero-slider-container">
+      {heroSlides.map((slide, idx) => {
+        const isActive = idx === currentSlide;
+        return (
+          <div
+            key={slide.image}
+            className={`hero-slide-item ${isActive ? 'active' : ''}`}
+            aria-hidden={!isActive}
+          >
+            <picture>
+              <source srcSet={resolveAssetPath(slide.webp)} type="image/webp" />
+              <img
+                src={resolveAssetPath(slide.image)}
+                alt={slide.alt}
+                className="hero-backdrop-img"
+                loading={idx === 0 ? "eager" : "lazy"}
+                fetchpriority={idx === 0 ? "high" : "auto"}
+                decoding="async"
+              />
+            </picture>
+          </div>
+        );
+      })}
+      <div className="hero-gradient-overlay" />
+      
+      {/* Slide Navigation Indicator Pills */}
+      <div className="hero-slide-dots" aria-label="Hero slider pagination">
+        {heroSlides.map((_, idx) => (
+          <button
+            key={idx}
+            type="button"
+            className={`hero-dot ${idx === currentSlide ? 'active' : ''}`}
+            onClick={() => setCurrentSlide(idx)}
+            aria-label={`Slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
 function HomePage({ siteData }) {
   const displayCourses = siteData.courses || defaultCourses;
 
@@ -1003,64 +1091,7 @@ function HomePage({ siteData }) {
     <>
       <section className="hero-section hero-full-bleed">
         {/* Direct High-Performance Eager Hero Image for Instant Mobile Loading */}
-        <div className="hero-backdrop-media">
-          <picture>
-            <source srcSet={resolveAssetPath('./images/heroImage.webp')} type="image/webp" />
-            <img 
-              src={resolveAssetPath(siteData.heroImage || './images/heroImage.jpg')} 
-              alt="Students learning in the LCS computer lab"
-              className="hero-backdrop-img"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-              onError={(e) => {
-                e.target.src = 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80';
-              }}
-            />
-          </picture>
-          <div className="hero-gradient-overlay" />
-        </div>
-
-        {/* Hero Writings Overlaid Directly on Top of Image */}
-        <div className="hero-inner-content">
-          <div className="hero-badge">
-            <span className="pulse-dot"></span>
-            <IconGraduationCap size={16} className="hero-badge-icon" />
-            <span>{(siteData.heroBadgeText || 'Admissions Open for 2026/2027 • Regular & Weekend Sessions').replace(/^🎓\s*/, '')}</span>
-          </div>
-
-          <p className="eyebrow hero-eyebrow">Accredited by Ghana Education Service</p>
-          <h1 className="hero-main-title">LCS Computer Training College</h1>
-          <p className="lead hero-lead-text">
-            Professional IT training with 95% practical focus. Master Information Technology, Cybersecurity,
-            Programming, Database Management, Graphic Design, Hardware Engineering, Video Editing, 
-            Microsoft Office, Website Development, and Advanced AI.
-          </p>
-
-          <div className="button-row hero-button-row">
-            <NavLink to="/courses" className="btn btn-primary btn-hero-primary btn-with-icon">
-              <span>Explore Programs</span>
-              <IconArrowRight size={16} />
-            </NavLink>
-            <NavLink to="/contact" className="btn btn-secondary btn-hero-secondary">
-              Apply Online →
-            </NavLink>
-          </div>
-
-          <div className="stats-grid hero-stats-grid">
-            {stats.map((stat) => (
-              <div key={stat.label} className="stat-card hero-stat-card">
-                <strong>{stat.value}</strong>
-                <span>{stat.label}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="hero-bottom-promo-pill">
-            <span className="promo-tag">{siteData.promoTitle || '95% Practical'}</span>
-            <span>{siteData.promoText || 'Flexible schedules with regular and weekend sessions. Hostel facilities available.'}</span>
-          </div>
-        </div>
+        <HeroSlider />
       </section>
 
       <section className="content-section">

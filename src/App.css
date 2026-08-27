@@ -5093,3 +5093,100 @@ footer.site-footer,
     ) !important;
   }
 }
+
+
+/* =========================================================================
+   HERO 3-SECOND AUTOMATIC SLIDER STYLES
+   ========================================================================= */
+
+.hero-slider-container {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+}
+
+.hero-slide-item {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0 !important;
+  transform: scale(1.05) !important;
+  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 3.5s ease-out !important;
+  will-change: opacity, transform !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+.hero-slide-item.active {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  z-index: 2 !important;
+  pointer-events: auto !important;
+}
+
+.hero-slide-dots {
+  position: absolute !important;
+  bottom: 22px !important;
+  right: 32px !important;
+  z-index: 10 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(14, 2, 4, 0.45) !important;
+  padding: 6px 14px !important;
+  border-radius: 999px !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+
+.hero-dot {
+  width: 18px !important;
+  height: 6px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.45) !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  padding: 0 !important;
+}
+
+.hero-dot.active {
+  width: 34px !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.9) !important;
+}
+
+.hero-dot:hover {
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+@media (max-width: 960px) {
+  .hero-slide-dots {
+    bottom: 16px !important;
+    right: 20px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-slide-dots {
+    bottom: 12px !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+    gap: 6px !important;
+    padding: 4px 10px !important;
+  }
+
+  .hero-dot {
+    width: 14px !important;
+    height: 4px !important;
+  }
+
+  .hero-dot.active {
+    width: 24px !important;
+  }
+}

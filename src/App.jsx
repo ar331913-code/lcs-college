@@ -36,7 +36,7 @@ import './App.css';
 
 const VISITOR_LOG_KEY = 'lcs_visitor_logs';
 const SITE_DATA_KEY = 'lcs_site_data';
-const DATA_VERSION = 'v13_authentic_campus_photos';
+const DATA_VERSION = 'v14_email_lcsinstituteghana';
 const DATA_VERSION_KEY = 'lcs_site_version';
 
 const whatsappNumber = '233242070679';
@@ -1638,7 +1638,7 @@ function ContactPage({ siteData }) {
   const [submitMode, setSubmitMode] = useState('');
 
   const academyPhone = siteData?.phone || '024 207 0679 / 0549 480 902';
-  const academyEmail = siteData?.email || 'admissions@lcsitacademy.com';
+  const academyEmail = siteData?.email || 'lcsinstituteghana@gmail.com';
   const academyAddress = siteData?.address || 'Inside Happy Home Tiles Building, Near Metro Mass Transport, Koforidua, Ghana';
   const contactWhatsApp = siteData?.whatsappLink || 'https://wa.me/233242070679?text=Hello%20LCS%20College%2C%20I%20want%20to%20apply%20for%20admission';
 

@@ -31,7 +31,7 @@ import {
 } from './components/Icons';
 import initialSiteData from './siteData.json';
 import { HashRouter, NavLink, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo, useCallback } from 'react';
 import './App.css';
 
 const VISITOR_LOG_KEY = 'lcs_visitor_logs';
@@ -1427,7 +1427,8 @@ function AboutPage({ siteData }) {
   );
 }
 
-function CoursesPage({ courses }) {
+function CoursesPage({ courses = [] }) {
+  const courseList = Array.isArray(courses) && courses.length > 0 ? courses : (defaultCourses || []);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const location = useLocation();
@@ -1441,7 +1442,7 @@ function CoursesPage({ courses }) {
   ];
 
   const filteredCourses = useMemo(() => {
-    return courses.filter((course) => {
+    return courseList.filter((course) => {
       const title = (course.title || '').toLowerCase();
       const desc = (course.text || '').toLowerCase();
       const term = searchTerm.toLowerCase().trim();
@@ -1465,7 +1466,7 @@ function CoursesPage({ courses }) {
       }
       return true;
     });
-  }, [courses, searchTerm, selectedCategory]);
+  }, [courseList, searchTerm, selectedCategory]);
 
   return (
     <>
@@ -1519,7 +1520,7 @@ function CoursesPage({ courses }) {
         </div>
 
         <div className="results-count-bar">
-          <span>Showing <strong>{filteredCourses.length}</strong> of {courses.length} programs</span>
+          <span>Showing <strong>{filteredCourses.length}</strong> of {courseList.length} programs</span>
           {searchTerm && (
             <span className="search-query-tag">Matching "{searchTerm}"</span>
           )}

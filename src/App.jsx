@@ -647,7 +647,7 @@ function PageLoadingScreen({ isVisible, logoImage, logoText = 'LCS' }) {
 
 function SiteLayout() {
   const [siteData, setSiteData] = useState(getMergedSiteData);
-  const [initialLoading, setInitialLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
   const [visitorLogs, setVisitorLogs] = useState(() => getStoredValue(VISITOR_LOG_KEY, []));
   const [isAdmin, setIsAdmin] = useState(() => getStoredValue('lcs_admin_session', false));
   const [showAdminPortal, setShowAdminPortal] = useState(false);
@@ -679,7 +679,7 @@ function SiteLayout() {
       })
       .catch((err) => console.log('Cloud sync check:', err))
       .finally(() => {
-        setTimeout(() => setInitialLoading(false), 400);
+        setTimeout(() => setInitialLoading(false), 1000);
       });
   }, []);
 

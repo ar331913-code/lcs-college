@@ -647,7 +647,7 @@ function PageLoadingScreen({ isVisible, logoImage, logoText = 'LCS' }) {
 
 function SiteLayout() {
   const [siteData, setSiteData] = useState(getMergedSiteData);
-  const [initialLoading, setInitialLoading] = useState(true);
+  const [initialLoading, setInitialLoading] = useState(false);
   const [visitorLogs, setVisitorLogs] = useState(() => getStoredValue(VISITOR_LOG_KEY, []));
   const [isAdmin, setIsAdmin] = useState(() => getStoredValue('lcs_admin_session', false));
   const [showAdminPortal, setShowAdminPortal] = useState(false);
@@ -972,6 +972,7 @@ function SiteLayout() {
               )
             }
           />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
 
@@ -981,7 +982,6 @@ function SiteLayout() {
           <p>Training the next generation of digital professionals in Ghana. Accredited by Ghana Education Service.</p>
           <div className="footer-copyright">
             <span>© {new Date().getFullYear()} LCS Computer Training College. All rights reserved.</span>
-            <NavLink to="/admin" className="admin-link-discrete">Admin</NavLink>
           </div>
         </div>
       </footer>

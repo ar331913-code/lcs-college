@@ -5943,3 +5943,11 @@ footer.site-footer,
     height: 190px !important;
   }
 }
+
+
+/* Hide any admin footer links permanently */
+.admin-link-discrete,
+.footer-bottom-links .admin-link-discrete {
+  display: none !important;
+  visibility: hidden !important;
+}

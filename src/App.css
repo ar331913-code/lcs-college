@@ -6422,3 +6422,51 @@ p.preloader-motto,
     gap: 20px !important;
   }
 }
+
+
+/* =========================================================================
+   LEADERSHIP CARDS BALANCED FRAMING & HEADSHOT PROPORTIONS
+   ========================================================================= */
+
+.two-column-leaders .leader-card {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 22px !important;
+  padding: 22px !important;
+}
+
+.two-column-leaders .leader-card .progressive-image-wrapper {
+  width: 170px !important;
+  height: 220px !important;
+  min-width: 170px !important;
+  max-width: 170px !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+}
+
+.two-column-leaders .leader-card img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  border-radius: 16px !important;
+  display: block !important;
+}
+
+@media (max-width: 768px) {
+  .two-column-leaders .leader-card {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 24px 18px !important;
+    gap: 16px !important;
+  }
+
+  .two-column-leaders .leader-card .progressive-image-wrapper {
+    width: 100% !important;
+    max-width: 240px !important;
+    height: 280px !important;
+    min-width: unset !important;
+  }
+}

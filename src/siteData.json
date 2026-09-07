@@ -103,7 +103,7 @@
       "id": "fac-faustina",
       "name": "Madam Lamiorkor Faustina",
       "role": "Facilitator & Secretary",
-      "image": "./images/faculty_faustina.jpg",
+      "image": "./images/faculty_faustina.jpg?v=1788803639290",
       "bio": "Facilitator and College Secretary overseeing student affairs, academic administrative facilitation, and secretarial leadership."
     },
     {
@@ -169,7 +169,7 @@
       "image": "./images/campus_hardware_workshop.jpg"
     }
   ],
-  "updatedAt": 1788798522296,
+  "updatedAt": 1788803639292,
   "email": "lcsinstituteghana@gmail.com",
   "phone": "024 207 0679 / 0549 480 902",
   "address": "Inside Happy Home Tiles Building, Near Metro Mass Transport, Koforidua, Ghana"

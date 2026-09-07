@@ -6470,3 +6470,34 @@ p.preloader-motto,
     min-width: unset !important;
   }
 }
+
+
+/* =========================================================================
+   REMOVE MOBILE BOTTOM DOCK (CLEAN VIEWPORT SPACING)
+   ========================================================================= */
+
+.mobile-bottom-dock,
+.mobile-bottom-nav {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body {
+  padding-bottom: 0 !important;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 0 !important;
+  }
+
+  .whatsapp-float {
+    bottom: 22px !important;
+    right: 18px !important;
+  }
+}

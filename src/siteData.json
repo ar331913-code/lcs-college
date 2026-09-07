@@ -100,6 +100,13 @@
       "bio": "Leads the strategic vision, institutional growth, and executive leadership of LCS Computer Training College in Ghana."
     },
     {
+      "id": "fac-faustina",
+      "name": "Madam Lamiorkor Faustina",
+      "role": "Facilitator & Secretary",
+      "image": "./images/faculty_faustina.jpg",
+      "bio": "Facilitator and College Secretary overseeing student affairs, academic administrative facilitation, and secretarial leadership."
+    },
+    {
       "id": "fac-ai",
       "name": "Emmanuel Boateng Boadu",
       "role": "AI Tutor",
@@ -162,7 +169,7 @@
       "image": "./images/campus_hardware_workshop.jpg"
     }
   ],
-  "updatedAt": 1788291869142,
+  "updatedAt": 1788798522296,
   "email": "lcsinstituteghana@gmail.com",
   "phone": "024 207 0679 / 0549 480 902",
   "address": "Inside Happy Home Tiles Building, Near Metro Mass Transport, Koforidua, Ghana"

@@ -6396,3 +6396,29 @@ p.preloader-motto,
   margin: 0 0 16px 0 !important;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85) !important;
 }
+
+
+/* =========================================================================
+   TWO-COLUMN LEADERSHIP GRID (CEO & MADAM FAUSTINA)
+   ========================================================================= */
+
+.two-column-leaders {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: 24px !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+.two-column-leaders .leader-card {
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .two-column-leaders {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}

@@ -110,7 +110,7 @@
       "id": "fac-ai",
       "name": "Emmanuel Boateng Boadu",
       "role": "AI Tutor",
-      "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+      "image": "./images/faculty_emmanuel_boateng.jpg",
       "bio": "Specializes in Artificial Intelligence, machine learning principles, neural networks, and building practical AI-powered workflows."
     },
     {
@@ -169,7 +169,7 @@
       "image": "./images/campus_hardware_workshop.jpg"
     }
   ],
-  "updatedAt": 1790214612074,
+  "updatedAt": 1790217172824,
   "email": "lcsinstituteghana@gmail.com",
   "phone": "024 207 0679 / 0549 480 902",
   "address": "Inside Happy Home Tiles Building, Near Metro Mass Transport, Koforidua, Ghana"

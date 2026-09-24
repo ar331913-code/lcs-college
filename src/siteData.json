@@ -117,7 +117,7 @@
       "id": "fac-prog",
       "name": "Abdul Rahman Adjovu",
       "role": "Programming Tutor",
-      "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+      "image": "./images/faculty_abdul_rahman.jpg",
       "bio": "Leads practical coding in Python, JavaScript, Java, C++, and full-stack web and software engineering projects."
     },
     {
@@ -169,7 +169,7 @@
       "image": "./images/campus_hardware_workshop.jpg"
     }
   ],
-  "updatedAt": 1788803639292,
+  "updatedAt": 1790214612074,
   "email": "lcsinstituteghana@gmail.com",
   "phone": "024 207 0679 / 0549 480 902",
   "address": "Inside Happy Home Tiles Building, Near Metro Mass Transport, Koforidua, Ghana"

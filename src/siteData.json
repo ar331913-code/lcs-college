@@ -103,7 +103,7 @@
       "id": "fac-faustina",
       "name": "Madam Lamiorkor Faustina",
       "role": "Facilitator & Secretary",
-      "image": "./images/faculty_faustina.jpg?v=1788803639290",
+      "image": "./images/faculty_faustina.jpg",
       "bio": "Facilitator and College Secretary overseeing student affairs, academic administrative facilitation, and secretarial leadership."
     },
     {
@@ -121,25 +121,25 @@
       "bio": "Leads practical coding in Python, JavaScript, Java, C++, and full-stack web and software engineering projects."
     },
     {
-      "id": "fac-network",
-      "name": "Kofi Mensah Asante",
-      "role": "Networking & Cybersecurity Tutor",
-      "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
-      "bio": "Guides students in LAN/WAN infrastructure, Cisco routing & switching, network defense, firewalls, and server management."
+      "id": "fac-livingston",
+      "name": "Mr. Livingston",
+      "role": "Networking & Cybersecurity Instructor",
+      "image": "./images/faculty_ghost_avatar.jpg",
+      "bio": "Specialist instructor in network administration, Cisco routing & switching, cybersecurity defenses, and systems infrastructure."
     },
     {
-      "id": "fac-creative",
-      "name": "Grace Ansah",
-      "role": "Graphic Design & Video Editing Tutor",
-      "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
-      "bio": "Professional media designer training learners in Adobe Photoshop, Illustrator, Premiere Pro, and motion graphics."
+      "id": "fac-manuel",
+      "name": "Mr. Manuel",
+      "role": "Graphic Design & Video Editing Instructor",
+      "image": "./images/faculty_ghost_avatar.jpg",
+      "bio": "Creative media instructor training students in Adobe Photoshop, Illustrator, Premiere Pro, and motion graphic design."
     },
     {
-      "id": "fac-hardware",
-      "name": "Kwame Appiah Danquah",
-      "role": "Hardware Engineering & Diagnostics Tutor",
-      "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
-      "bio": "Practical hardware technician teaching computer assembly, motherboards, chip troubleshooting, and system repairs."
+      "id": "fac-ohene-budu",
+      "name": "Emmanuel Ohene Budu",
+      "role": "Hardware Engineering & Technical Diagnostics Instructor",
+      "image": "./images/faculty_ghost_avatar.jpg",
+      "bio": "Practical technician teaching computer assembly, motherboard architecture, chip-level troubleshooting, and hardware repairs."
     }
   ],
   "gallery": [
@@ -169,7 +169,7 @@
       "image": "./images/campus_hardware_workshop.jpg"
     }
   ],
-  "updatedAt": 1790217172824,
+  "updatedAt": 1790217617133,
   "email": "lcsinstituteghana@gmail.com",
   "phone": "024 207 0679 / 0549 480 902",
   "address": "Inside Happy Home Tiles Building, Near Metro Mass Transport, Koforidua, Ghana"

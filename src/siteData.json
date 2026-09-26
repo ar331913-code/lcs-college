@@ -71,7 +71,7 @@
     },
     {
       "id": "microsoft-office",
-      "title": "Microsoft Office",
+      "title": "Microsoft Office Suite",
       "duration": "Flexible",
       "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
       "text": "Master Advanced Excel financial models, Word documentation, PowerPoint presentations, and Access databases."
@@ -169,7 +169,7 @@
       "image": "./images/campus_hardware_workshop.jpg"
     }
   ],
-  "updatedAt": 1790218893426,
+  "updatedAt": 1790466683650,
   "email": "lcsinstituteghana@gmail.com",
   "phone": "024 207 0679 / 0549 480 902",
   "address": "Inside Happy Home Tiles Building, Near Metro Mass Transport, Koforidua, Ghana"

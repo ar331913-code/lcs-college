@@ -36,7 +36,7 @@ import './App.css';
 
 const VISITOR_LOG_KEY = 'lcs_visitor_logs';
 const SITE_DATA_KEY = 'lcs_site_data';
-const DATA_VERSION = 'v21_ghost_avatars_active';
+const DATA_VERSION = 'v22_microsoft_office_suite_brand_favicon';
 const DATA_VERSION_KEY = 'lcs_site_version';
 
 const whatsappNumber = '233242070679';

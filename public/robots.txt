@@ -1,0 +1,6 @@
+# LCS Computer Training College Robots.txt
+User-agent: *
+Allow: /
+Disallow: /#/admin
+Disallow: /admin
+Sitemap: https://lcsinstitute.com/

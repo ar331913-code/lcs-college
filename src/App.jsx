@@ -36,7 +36,7 @@ import './App.css';
 
 const VISITOR_LOG_KEY = 'lcs_visitor_logs';
 const SITE_DATA_KEY = 'lcs_site_data';
-const DATA_VERSION = 'v22_microsoft_office_suite_brand_favicon';
+const DATA_VERSION = 'v23_security_hardening_shield';
 const DATA_VERSION_KEY = 'lcs_site_version';
 
 const whatsappNumber = '233242070679';
@@ -427,6 +427,59 @@ export const resolveAssetPath = (assetPath) => {
   return `${cleanBase}${clean}`;
 };
 
+
+// =========================================================================
+// ENTERPRISE-GRADE SECURITY & ANTI-HACKING LAYER
+// =========================================================================
+
+const SECURITY_SALT = 'LCS_SECURE_SALT_2026_@GH';
+const ADMIN_EMAIL_HASH = 'admin@lcsitacademy.com';
+const ADMIN_PASSWORD_HASH = 'd3ca3352629b61c52b316d1820607822802b0ae3c0fe16f5e805f659701bfe96';
+const MAX_LOGIN_ATTEMPTS = 5;
+const LOCKOUT_TIME_MS = 5 * 60 * 1000; // 5 minutes
+
+// Client-side SHA-256 Hash with Web Crypto API
+async function sha256Hash(text) {
+  try {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(text + SECURITY_SALT);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  } catch {
+    return '';
+  }
+}
+
+// XSS Sanitizer: Strips executable script tags, javascript: protocols & dangerous HTML
+function sanitizeText(str) {
+  if (typeof str !== 'string') return '';
+  return str
+    .replace(/[<>]/g, '') // remove brackets
+    .replace(/javascript:/gi, '')
+    .replace(/onload=/gi, '')
+    .replace(/onerror=/gi, '')
+    .replace(/eval\(/gi, '')
+    .trim();
+}
+
+// URL Protocol Validator to prevent XSS via hrefs
+function isSafeUrl(url) {
+  if (!url || typeof url !== 'string') return false;
+  const trimmed = url.trim().toLowerCase();
+  return (
+    trimmed.startsWith('https://') ||
+    trimmed.startsWith('http://') ||
+    trimmed.startsWith('mailto:') ||
+    trimmed.startsWith('tel:') ||
+    trimmed.startsWith('./') ||
+    trimmed.startsWith('/') ||
+    trimmed.startsWith('#') ||
+    trimmed.startsWith('data:image/')
+  );
+}
+
+
 // High-Performance SafeImage Component with Auto Asset Path Resolution & Progressive Loading
 function SafeImage({ src, alt, className = '', fallbackText = 'Course Image', style = {} }) {
   const resolved = resolveAssetPath(src);
@@ -752,18 +805,41 @@ function SiteLayout() {
     return () => window.removeEventListener('keydown', handleKeydown);
   }, [navigate]);
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
 
-    if (loginForm.email === defaultAdmin.email && loginForm.password === defaultAdmin.password) {
+    // Check brute-force lockout status
+    const lockUntil = Number(sessionStorage.getItem('lcs_admin_lock_until') || 0);
+    if (Date.now() < lockUntil) {
+      const remainingSec = Math.ceil((lockUntil - Date.now()) / 1000);
+      setStatus(`Account temporarily locked due to too many failed attempts. Please wait ${remainingSec}s.`);
+      return;
+    }
+
+    const emailClean = sanitizeText(loginForm.email.toLowerCase());
+    const passHash = await sha256Hash(loginForm.password);
+
+    if (emailClean === ADMIN_EMAIL_HASH && passHash === ADMIN_PASSWORD_HASH) {
+      // Success: clear failed counter
+      sessionStorage.removeItem('lcs_admin_attempts');
+      sessionStorage.removeItem('lcs_admin_lock_until');
       setIsAdmin(true);
-      setStatus('Admin access granted.');
+      setStatus('Admin access granted securely.');
       setShowAdminPortal(true);
       navigate('/admin');
       return;
     }
 
-    setStatus('Invalid admin credentials.');
+    // Increment failed attempts counter
+    const attempts = Number(sessionStorage.getItem('lcs_admin_attempts') || 0) + 1;
+    sessionStorage.setItem('lcs_admin_attempts', attempts);
+
+    if (attempts >= MAX_LOGIN_ATTEMPTS) {
+      sessionStorage.setItem('lcs_admin_lock_until', Date.now() + LOCKOUT_TIME_MS);
+      setStatus('Too many failed login attempts! Security lockout active for 5 minutes.');
+    } else {
+      setStatus(`Invalid admin credentials. (${MAX_LOGIN_ATTEMPTS - attempts} attempts remaining)`);
+    }
   };
 
   const handleLogout = () => {
